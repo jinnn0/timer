@@ -5,56 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://kit.fontawesome.com/719e11e253.js"></script>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./temp/styles/style.css">
   <title>Timer</title>
 </head>
 <body>
-  <header class="video-header  wrapper">
-    <div class="video-header_video-container">
-        <video autoplay loop muted>
-          <source src="Desert-Crater/Desert-Crater.mp4">
-        </video>
+
+    <div class="app-container wrapper">
+      <div class="stop-watch">
+          <div class="current-record">
+              <div class="time-box hour">
+                  <span class="time js-hour-num">00</span>
+                  <span class="time-letter">h</span>
+              </div>          
+              <div class="time-box minute">
+                  <span class="time js-minute-num">00</span>
+                  <span class="time-letter">m</span> 
+              </div>  
+              <div class="time-box second">
+                  <span class="time box js-second-num">00</span>
+                  <span class="time-letter">s</span>
+              </div>
+          </div>
+          <div class="progress-bar js-progress-bar"></div>
+          <div class="buttons">
+              <button class="btn toggle">start</button>
+              <button class="btn reset">reset</button>
+              <button class="btn mode">dark mode</button>
+          </div>
+      </div>
+
+
     </div>
 
-    <div class="video-header_overlay"></div>
-
-    <div class="video-header_content-container">
-      <h1> Hello Everyone</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing eliEaque corporis explicabo perferendis ratione sint
-        Dolore voluptates eum architecto non consectetur!</p>
-      <a href="" class="btn">Read More</a>
-    </div>
-  </header>
-
-  <section class="section  section-a wrapper">
-    <h1>Section A</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Facilis velit, qui odit totam consequatur enim et amet corporis 
-      dolorum. Sunt, unde fuga quam praesentium voluptates quidem 
-      voluptatem delectus nam nisi, necessitatibus a id quaerat exercitationem 
-      quia consectetur rem maxime recusandae? Voluptatibus, ab at. 
-      Illo voluptates quas dignissimos assumenda. Sequi, quasi?</p>
-  </section>
-  <section class="section  section-b wrapper">
-      <h1>Section B</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Facilis velit, qui odit totam consequatur enim et amet corporis 
-        dolorum. Sunt, unde fuga quam praesentium voluptates quidem 
-        voluptatem delectus nam nisi, necessitatibus a id quaerat exercitationem 
-        quia consectetur rem maxime recusandae? Voluptatibus, ab at. 
-        Illo voluptates quas dignissimos assumenda. Sequi, quasi?</p>
-    </section>
-
-    <footer class="wrapper">
-        <div class="social">
-          <a href="./">Facebook</a> 
-          <a href="./">Instagram</a>
-          <a href="./">Twitter</a>
-        </div>
-        <div class="copyright">© Creative Minds</div>
-    </footer>
-
-
-  <script src="./index.js"></script>
+  <script src="./temp/scripts/App.js"></script>
 </body>
 </html>
