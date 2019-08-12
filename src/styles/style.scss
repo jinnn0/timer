@@ -4,16 +4,19 @@
 @import './modules/header';
 @import './modules/footer';
 
+
+
+// see the layouts
 .app-container,
 .stop-watch,
 .current-record,
 .time-box,
 .time,
 .progress-bar,
-.buttons {
-  // border: 1px solid black;
+.buttons,
+.btn {
+  border: 1px solid black;
 } 
-
 
 
 
@@ -58,6 +61,7 @@
                         transition: all .2s ease-in-out;
                         transition: background-color .7s ease;
                         display: inline-block;
+                        font-size: 3.5rem;
 
                         @include atSmall {
                           width: 80px;
@@ -107,8 +111,13 @@
               margin-top: 100px;
               width: 75%;
               padding: 20px 10px 20px 10px;
-              position: relative;
-              text-align: start;
+              display: grid;
+              // grid-template-columns: 77px 77px auto 135px 135px;
+              grid-template-columns: repeat(2, auto);
+
+              @include atSmall {
+                grid-template-columns: repeat(2, auto);
+              }
 
                     .btn {
                       padding: 7px 15px 7px 15px;
@@ -122,17 +131,38 @@
                       transition: all .7s ease;
                     }
 
+                    .btn:nth-of-type(1){
+                      // grid-column: 1 / 2;
+                    }
+                    .btn:nth-of-type(2){
+                      // grid-column: 2 / 3;
+                    }
+                    .btn:nth-of-type(3){
+                      // grid-column: 5 / 6;
+
+                      @include atSmall {
+                        // grid-column: 3 / 4;
+                      }
+                    }
+
+                    .btn.sm {
+                      width: 73px;
+                    }
+
+                    .btn.lg {
+                      width: 133px;
+                    }
+
                     .js-toggle-btn {
                       color: white;
                     }
 
-                    .mode {
-
-                      @include atSmall {
-                        position: absolute;
-                        right: 0;
-                      }
-                    }
+                    // .mode {
+                    //   @include atSmall {
+                    //     position: absolute;
+                    //     right: 0;
+                    //   }
+                    // }
 
                     .btn:hover {
                       background-color: rgb(247, 247, 247);

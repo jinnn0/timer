@@ -15,8 +15,7 @@ body {
   max-width: 1280px;
   padding-left: 18px;
   padding-right: 18px;
-  margin: auto;
-  text-align: center; }
+  margin: auto; }
 
 footer {
   height: 300px;
@@ -38,6 +37,16 @@ footer {
       border: 1px solid transparent; }
     footer .social a:hover {
       border-bottom: 1px solid black; }
+
+.app-container,
+.stop-watch,
+.current-record,
+.time-box,
+.time,
+.progress-bar,
+.buttons,
+.btn {
+  border: 1px solid black; }
 
 .app-container {
   width: 100%;
@@ -72,7 +81,8 @@ footer {
     .stop-watch .current-record .time {
       transition: all .2s ease-in-out;
       transition: background-color .7s ease;
-      display: inline-block; }
+      display: inline-block;
+      font-size: 3.5rem; }
       @media (min-width: 500px) {
         .stop-watch .current-record .time {
           width: 80px;
@@ -107,8 +117,11 @@ footer {
     margin-top: 100px;
     width: 75%;
     padding: 20px 10px 20px 10px;
-    position: relative;
-    text-align: start; }
+    display: grid;
+    grid-template-columns: repeat(2, auto); }
+    @media (min-width: 500px) {
+      .stop-watch .buttons {
+        grid-template-columns: repeat(2, auto); } }
     .stop-watch .buttons .btn {
       padding: 7px 15px 7px 15px;
       background: 0;
@@ -119,12 +132,12 @@ footer {
       letter-spacing: 1.2px;
       cursor: pointer;
       transition: all .7s ease; }
+    .stop-watch .buttons .btn.sm {
+      width: 73px; }
+    .stop-watch .buttons .btn.lg {
+      width: 133px; }
     .stop-watch .buttons .js-toggle-btn {
       color: white; }
-    @media (min-width: 500px) {
-      .stop-watch .buttons .mode {
-        position: absolute;
-        right: 0; } }
     .stop-watch .buttons .btn:hover {
       background-color: #f7f7f7;
       color: black; }
