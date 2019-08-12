@@ -38,16 +38,6 @@ footer {
     footer .social a:hover {
       border-bottom: 1px solid black; }
 
-.app-container,
-.stop-watch,
-.current-record,
-.time-box,
-.time,
-.progress-bar,
-.buttons,
-.btn {
-  border: 1px solid black; }
-
 .app-container {
   width: 100%;
   min-height: 100vh;
