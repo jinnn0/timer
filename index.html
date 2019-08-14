@@ -8,33 +8,54 @@
   <link rel="stylesheet" href="./temp/styles/style.css">
   <title>Timer</title>
 </head>
-<body> 
- 
+<body>
     <div class="app-container wrapper">
-      <div class="stop-watch">
-          <div class="current-record">
-              <div class="time-box hour">
+      <div class="app">
+          <div class="record-container stopwatch">
+              <div class="time-box">
                   <span class="time js-hour-num">00</span>
                   <span class="time-letter">h</span>
               </div>          
-              <div class="time-box minute">
+              <div class="time-box">
                   <span class="time js-minute-num">00</span>
                   <span class="time-letter">m</span> 
               </div>  
-              <div class="time-box second">
+              <div class="time-box">
                   <span class="time box js-second-num">00</span>
                   <span class="time-letter">s</span>
               </div>
+              <div class="time-box millsecond-container">
+                  <span class="time box js-millsecond-num millsecond">0</span>
+              </div>
           </div>
-          <div class="progress-bar js-progress-bar"></div>
+
+          <div class="record-container timer">
+                <div class="time-box">
+                    <span class="time js-hour-num">00</span>
+                    <span class="time-letter">h</span>
+                </div>          
+                <div class="time-box">
+                    <span class="time js-minute-num">00</span>
+                    <span class="time-letter">m</span> 
+                </div>  
+                <div class="time-box">
+                    <span class="time box js-second-num">00</span>
+                    <span class="time-letter">s</span>
+                </div>
+            </div>
+
+          <div class="progress-bar js-progress-bar">
+              <div class="progress-bar-child"></div>
+          </div>
+
           <div class="buttons">
               <div class="functions">
-                 <button class="btn sm toggle">start</button>
+                 <button class="btn sm js-toggleStart">start</button>
                  <button class="btn sm reset">reset</button>
               </div>    
               <div class="options">
                  <button class="btn lg mode">dark mode</button>
-                 <button class="btn lg timer">timer</button>
+                 <button class="btn lg js-toggleStopwatch">timer</button>
               </div>          
           </div>
       </div>
