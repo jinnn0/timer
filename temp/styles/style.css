@@ -32,14 +32,15 @@ body {
   align-items: center;
   flex-direction: column; }
   .stop-watch .current-record {
-    width: 80%;
+    width: 100%;
     height: 250px;
     display: flex;
     justify-content: space-between;
     align-items: center; }
     @media (min-width: 500px) {
       .stop-watch .current-record {
-        height: 220px; } }
+        height: 220px;
+        width: 80%; } }
     @media (min-width: 750px) {
       .stop-watch .current-record {
         height: 250px; } }
@@ -73,10 +74,14 @@ body {
         .stop-watch .current-record .time-letter {
           font-size: 3rem; } }
   .stop-watch .progress-bar {
-    width: 75%;
+    width: 100%;
     height: 6px;
     border-radius: 10px;
-    background-color: #cecece; }
+    background-color: #cecece;
+    transition: all .7s ease; }
+    @media (min-width: 500px) {
+      .stop-watch .progress-bar {
+        width: 75%; } }
     @media (min-width: 750px) {
       .stop-watch .progress-bar {
         height: 10px; } }
@@ -84,9 +89,12 @@ body {
     background-color: #ffffff; }
   .stop-watch .buttons {
     margin-top: 70px;
-    width: 75%;
+    width: 100%;
     padding: 10px 5px 10px 0px;
     display: flex; }
+    @media (min-width: 500px) {
+      .stop-watch .buttons {
+        width: 75%; } }
     .stop-watch .buttons .functions,
     .stop-watch .buttons .options {
       width: 100%;
