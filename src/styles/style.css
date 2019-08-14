@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: arial,sans-serif;
+}
+
+body {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.js-toggle-body {
+  background-color: black;
+  color: white;
+}
+
+.wrapper {
+  max-width: 1280px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin: auto;
+}
+
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 15vh;
+}
+
+.stop-watch {
+  width: 90%;
+  min-height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.stop-watch .current-record {
+  width: 80%;
+  height: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (min-width: 500px) {
+  .stop-watch .current-record {
+    height: 220px;
+  }
+}
+
+@media (min-width: 750px) {
+  .stop-watch .current-record {
+    height: 250px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .stop-watch .current-record {
+    width: 75%;
+    height: 300px;
+  }
+}
+
+.stop-watch .current-record .time {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-transition: background-color .7s ease;
+  transition: background-color .7s ease;
+  display: inline-block;
+  font-size: 3.5rem;
+}
+
+@media (min-width: 500px) {
+  .stop-watch .current-record .time {
+    width: 80px;
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 750px) {
+  .stop-watch .current-record .time {
+    width: 116px;
+    font-size: 6.5rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .stop-watch .current-record .time {
+    width: 174.5px;
+    font-size: 9.8rem;
+  }
+}
+
+.stop-watch .current-record .time-letter {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 750px) {
+  .stop-watch .current-record .time-letter {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .stop-watch .current-record .time-letter {
+    font-size: 3rem;
+  }
+}
+
+.stop-watch .progress-bar {
+  width: 75%;
+  height: 6px;
+  border-radius: 10px;
+  background-color: #cecece;
+}
+
+@media (min-width: 750px) {
+  .stop-watch .progress-bar {
+    height: 10px;
+  }
+}
+
+.stop-watch .js-toggle-progress {
+  background-color: #ffffff;
+}
+
+.stop-watch .buttons {
+  margin-top: 70px;
+  width: 75%;
+  padding: 10px 5px 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.stop-watch .buttons .functions,
+.stop-watch .buttons .options {
+  width: 100%;
+  height: 85px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (min-width: 750px) {
+  .stop-watch .buttons .functions,
+  .stop-watch .buttons .options {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.stop-watch .buttons .options {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+@media (min-width: 750px) {
+  .stop-watch .buttons .options {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.stop-watch .buttons .btn {
+  padding: 7px 15px 7px 15px;
+  background: 0;
+  border-radius: 18px;
+  font-size: 17px;
+  outline: none;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  -webkit-transition: all .7s ease;
+  transition: all .7s ease;
+  border: none;
+  -webkit-box-shadow: 3px 2px 4px 0 rgba(148, 148, 148, 0.25);
+          box-shadow: 3px 2px 4px 0 rgba(148, 148, 148, 0.25);
+}
+
+.stop-watch .buttons .btn.sm {
+  width: 73px;
+  margin-right: 10px;
+}
+
+.stop-watch .buttons .btn.lg {
+  width: 133px;
+  margin-left: 10px;
+}
+
+.stop-watch .buttons .js-toggle-btn {
+  color: white;
+}
+
+.stop-watch .buttons .btn:hover {
+  background-color: #f7f7f7;
+  color: black;
+}
+/*# sourceMappingURL=style.css.map */

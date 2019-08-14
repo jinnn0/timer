@@ -17,27 +17,6 @@ body {
   padding-right: 18px;
   margin: auto; }
 
-footer {
-  height: 300px;
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-  footer .social {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px; }
-    @media (min-width: 750px) {
-      footer .social {
-        width: 400px; } }
-    footer .social a {
-      border: 1px solid transparent; }
-    footer .social a:hover {
-      border-bottom: 1px solid black; }
-
 .app-container {
   width: 100%;
   min-height: 100vh;
@@ -104,28 +83,46 @@ footer {
   .stop-watch .js-toggle-progress {
     background-color: #ffffff; }
   .stop-watch .buttons {
-    margin-top: 100px;
+    margin-top: 70px;
     width: 75%;
-    padding: 20px 10px 20px 10px;
-    display: grid;
-    grid-template-columns: repeat(2, auto); }
-    @media (min-width: 500px) {
-      .stop-watch .buttons {
-        grid-template-columns: repeat(2, auto); } }
+    padding: 10px 5px 10px 0px;
+    display: flex; }
+    .stop-watch .buttons .functions,
+    .stop-watch .buttons .options {
+      width: 100%;
+      height: 85px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+      @media (min-width: 750px) {
+        .stop-watch .buttons .functions,
+        .stop-watch .buttons .options {
+          flex-direction: row;
+          justify-content: start;
+          align-items: center; } }
+    .stop-watch .buttons .options {
+      align-items: flex-end; }
+      @media (min-width: 750px) {
+        .stop-watch .buttons .options {
+          justify-content: flex-end;
+          align-items: center; } }
     .stop-watch .buttons .btn {
       padding: 7px 15px 7px 15px;
       background: 0;
       border-radius: 18px;
       font-size: 17px;
-      margin-right: 10px;
       outline: none;
       letter-spacing: 1.2px;
       cursor: pointer;
-      transition: all .7s ease; }
+      transition: all .7s ease;
+      border: none;
+      box-shadow: 3px 2px 4px 0 rgba(148, 148, 148, 0.25); }
     .stop-watch .buttons .btn.sm {
-      width: 73px; }
+      width: 73px;
+      margin-right: 10px; }
     .stop-watch .buttons .btn.lg {
-      width: 133px; }
+      width: 133px;
+      margin-left: 10px; }
     .stop-watch .buttons .js-toggle-btn {
       color: white; }
     .stop-watch .buttons .btn:hover {
