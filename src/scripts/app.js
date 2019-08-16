@@ -84,6 +84,7 @@ modeBtns.forEach(modeBtn =>
 
 toggleAppBtns.forEach(toggleAppBtn => 
   toggleAppBtn.addEventListener('click', function(){
+    console.log("change to timer");
       if(!isTimer) {
         progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
         setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
@@ -94,6 +95,7 @@ toggleAppBtns.forEach(toggleAppBtn =>
       } 
       
       else {
+        console.log("change to stopwatch");
         progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
         setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
         appStopwatch.style.display = "flex"

@@ -37,7 +37,6 @@ body {
       .app .record-container {
         width: 75%; } }
     .app .record-container .time {
-      transition: all .2s ease-in-out;
       transition: background-color .7s ease;
       display: inline-block;
       font-size: 3.5rem; }
@@ -164,5 +163,21 @@ body {
 
 form {
   position: absolute;
-  top: 50px;
-  left: 45%; }
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; }
+  form input {
+    text-align: center;
+    width: 500px;
+    height: 100px;
+    padding: 20px;
+    outline: none;
+    background-color: none;
+    letter-spacing: 1px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1.7rem; }
+  form input::placeholder {
+    padding-left: 5px;
+    color: rgba(169, 169, 169, 0.632); }
