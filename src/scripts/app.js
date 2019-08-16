@@ -1,19 +1,30 @@
 import {Stopwatch} from './modules/Stopwatch'
 import {Mode} from './modules/Mode'
+import {Timer} from './modules/Timer'
 
- 
-let millSecondEl = document.querySelector('.js-millsecond-num')
-let secondEl = document.querySelector('.js-second-num')
-let minuteEl = document.querySelector('.js-minute-num')
-let hourEl = document.querySelector('.js-hour-num')
-let toggleStartBtn = document.querySelector('.js-toggleStart')
-let resetBtn = document.querySelector('.reset')
 
-// toggle stopwatch or timer
+// toggle bewtween stopwatch and timer
 let toggleStopwatch = document.querySelector('.js-toggleStopwatch')
 let progressBarChild = document.querySelector('.progress-bar-child')
 let stopwatchBox = document.querySelector('.record-container.stopwatch')
 let timerBox = document.querySelector('.record-container.timer')
+
+// stopwatch elements 
+let millSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
+let secondEl = document.querySelector('.stopwatch .js-second-num')
+let minuteEl = document.querySelector('.stopwatch .js-minute-num')
+let hourEl = document.querySelector('.stopwatch .js-hour-num')
+
+// timer elements 
+let form = document.querySelector('form')
+let inputEl = document.querySelector('input')
+let timerSecond = document.querySelector('.timer .js-second-num')
+let timerMinute = document.querySelector('.timer .js-minute-num')
+let timerHour = document.querySelector('.timer .js-hour-num')
+
+// startStop button, reset button
+let toggleStartBtn = document.querySelector('.js-toggleStart')
+let resetBtn = document.querySelector('.reset')
 
 // dark or white mode
 let body = document.querySelector('body')
@@ -21,77 +32,91 @@ let progressBar = document.querySelector('.js-progress-bar')
 let buttons = document.querySelectorAll('.btn')
 let modeBtn = document.querySelector('.mode')
 
-
+// Instances 
 let watch = new Stopwatch(millSecondEl, secondEl, minuteEl, hourEl)
 let mode = new Mode(body, progressBar, buttons, modeBtn)
+let timer
 
+let isTimer = false
 
-function start(){
-  watch.start(secondEl, minuteEl, hourEl)
+form.addEventListener('submit', function(e){
+  e.preventDefault()
+  let userInput = inputEl.value
+  let countdown = 60 * userInput
+
+  timer = new Timer(countdown, timerSecond, timerMinute, timerHour)
+  timer.start()
   toggleStartBtn.textContent = "stop"
-}
-
-function stop(){
-  watch.stop()
-  toggleStartBtn.textContent = "start"
-}
+  timer.isOn = true
+})
 
 
+
+// event listener implementations
 toggleStartBtn.addEventListener('click', function(){
-  (!watch.isOn) ? start() : stop()
+  if(!isTimer){
+    (!watch.isOn) ? start() : stop()
+  } else {
+     (!timer.isOn) ? start() : stop()
+  }
 })
 
 resetBtn.addEventListener('click', function(){
-  watch.reset()
-  toggleStartBtn.textContent = "start"
+  if(!isTimer) {
+    watch.reset()
+    toggleStartBtn.textContent = "start"
+  } else {
+    timer.reset()
+    toggleStartBtn.textContent = "start"
+  }
 })
-
 
 modeBtn.addEventListener('click', function(){
    mode.change()
 })
 
-
 toggleStopwatch.addEventListener('click', function(){
-  toggleStopwatch.textContent = "stopwatch"
-  progressBarChild.style.animation = "progressBar .7s ease-in-out"
-  stopwatchBox.style.display = "none"
-  timerBox.style.display = "flex"
+  if(!isTimer) {
+    progressBarChild.style.animation = "progressBar .7s ease-in-out forwards"
+    setTimeout(() => {progressBarChild.style.animation = null}, 500);
+    stopwatchBox.style.display = "none"
+    timerBox.style.display = "flex"
+    toggleStopwatch.textContent = "stopwatch"
+    isTimer = true
+    console.log("isTimer ", isTimer);
+  } 
+  
+  else {
+    progressBarChild.style.animation = "progressBar .7s ease-in-out forwards"
+    setTimeout(() => {progressBarChild.style.animation = null}, 500);
+    stopwatchBox.style.display = "flex"
+    timerBox.style.display = "none"
+    toggleStopwatch.textContent = "timer"
+    isTimer = false
+    console.log("isTimer ", isTimer);
+  }
 })
 
 
 
 
-function Timer(){
-
+// start and stop functions 
+function start(){
+  if(!isTimer) {
+    watch.start()
+    toggleStartBtn.textContent = "stop"
+  } else {
+    timer.start()
+    toggleStartBtn.textContent = "stop"
+  }
 }
 
-
-
-var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-
-// Update the count down every 1 second
-  var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-    
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  console.log( days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ");
-    
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+function stop(){
+  if(!isTimer) {
+    watch.stop()
+    toggleStartBtn.textContent = "start"
+  } else { 
+    timer.stop()
+    toggleStartBtn.textContent = "start"
   }
-}, 1000);
+}

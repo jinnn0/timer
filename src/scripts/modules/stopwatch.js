@@ -26,43 +26,28 @@ export function Stopwatch(millSecondEl, secondEl, minuteEl, hourEl) {
     
     
     millSecondEl.textContent = millSecond
-
-    if(second < 10) {
-      secondEl.textContent = `0${second}`
-    } else {
-      secondEl.textContent = second
-    }
-
-    if(minute < 10) {
-      minuteEl.textContent = `0${minute}`
-    } else {
-      minuteEl.textContent = minute
-    }
-
-    if(hour < 10) {
-      hourEl.textContent = `0${hour}`
-    } else {
-      hourEl.textContent = hour
-    }
+    secondEl.textContent = (second < 10) ? `0${second}` : second;
+    minuteEl.textContent = (minute < 10) ? `0${minute}` : minute;
+    hourEl.textContent = (hour < 10) ? `0${hour}` : hour;
 }
 
   this.isOn = false
 
-  this.start = function start(){
+  this.start = function (){
     if(!this.isOn) {
       interval = window.setInterval(update, 100);
       this.isOn = true
     } 
   }
 
-  this.stop = function stop(){
+  this.stop = function (){
     if(this.isOn) {
       window.clearInterval(interval)
       this.isOn = false
     }
   }
 
-  this.reset = function reset(){
+  this.reset = function (){
     window.clearInterval(interval)
     millSecond = 0
     second = 0

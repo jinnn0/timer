@@ -82,7 +82,7 @@ body {
       @media (min-width: 1000px) {
         .app .record-container .time-letter {
           font-size: 3rem; } }
-  .app .timer {
+  .app .record-container.timer {
     display: none; }
   .app .progress-bar {
     width: 100%;
@@ -166,3 +166,8 @@ body {
     .app .buttons .btn:hover {
       background-color: #f7f7f7;
       color: black; }
+
+form {
+  position: absolute;
+  top: 50px;
+  left: 45%; }
