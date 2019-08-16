@@ -9,63 +9,76 @@
   <title>Timer</title>
 </head>
 <body>
-    <div class="app-container wrapper">
-      <div class="app">
-
-          <div class="record-container stopwatch">
-              <div class="time-box">
-                  <span class="time js-hour-num timer">00</span>
-                  <span class="time-letter">h</span>
-              </div>          
-              <div class="time-box">
-                  <span class="time js-minute-num timer">00</span>
-                  <span class="time-letter">m</span> 
-              </div>  
-              <div class="time-box">
-                  <span class="time box js-second-num timer">00</span>
-                  <span class="time-letter">s</span>
-              </div>
-              <div class="time-box millsecond-container">
-                  <span class="time box js-millsecond-num millsecond">0</span>
-              </div>
-          </div>
-
-          <div class="record-container timer">
-                <form action="">
-                    <input type="text" placeholder="minutes">
-                </form>
-                <div class="time-box">
-                    <span class="time js-hour-num">00</span>
-                    <span class="time-letter">h</span>
-                </div>          
-                <div class="time-box">
-                    <span class="time js-minute-num">00</span>
-                    <span class="time-letter">m</span> 
-                </div>  
-                <div class="time-box">
-                    <span class="time box js-second-num">00</span>
-                    <span class="time-letter">s</span>
-                </div>
+    <div class="app stopwatch">
+        <div class="record-container stopwatch">
+            <div class="time-box">
+                <span class="time js-hour-num stopwatch">00</span>
+                <span class="time-letter">h</span>
+            </div>          
+            <div class="time-box">
+                <span class="time js-minute-num stopwatch">00</span>
+                <span class="time-letter">m</span> 
+            </div>  
+            <div class="time-box">
+                <span class="time box js-second-num stopwatch">00</span>
+                <span class="time-letter">s</span>
             </div>
+            <div class="time-box millsecond-container">
+                <span class="time box js-millsecond-num millsecond stopwatch">0</span>
+            </div>
+        </div>
 
-          <div class="progress-bar js-progress-bar">
-              <div class="progress-bar-child"></div>
-          </div>
+        <div class="progress-bar js-progress-bar">
+            <div class="progress-bar-child"></div>
+        </div>
 
-          <div class="buttons">
-              <div class="functions">
-                 <button class="btn sm js-toggleStart">start</button>
-                 <button class="btn sm reset">reset</button>
-              </div>    
-              <div class="options">
-                 <button class="btn lg mode">dark mode</button>
-                 <button class="btn lg js-toggleStopwatch">timer</button>
-              </div>          
-          </div>
-      </div>
-
-
+        <div class="buttons">
+            <div class="functions">
+                <button class="btn sm js-toggleStart">start</button>
+                <button class="btn sm reset">reset</button>
+            </div>    
+            <div class="options">
+                <button class="btn lg mode">dark mode</button>
+                <button class="btn lg js-toggle-app">timer</button>
+            </div>          
+        </div>
     </div>
+
+    <div class="app timer">
+        <div class="record-container timer">
+            <form action="">
+                <input type="text" placeholder=" minutes">
+            </form>
+            <div class="time-box">
+                <span class="time js-hour-num timer">00</span>
+                <span class="time-letter">h</span>
+            </div>          
+            <div class="time-box">
+                <span class="time js-minute-num timer">00</span>
+                <span class="time-letter">m</span> 
+            </div>  
+            <div class="time-box">
+                <span class="time box js-second-num timer">00</span>
+                <span class="time-letter">s</span>
+            </div>
+        </div>
+
+        <div class="progress-bar js-progress-bar">
+            <div class="progress-bar-child"></div>
+        </div>
+
+        <div class="buttons">
+            <div class="functions">
+                <button class="btn sm js-toggleStart">start</button>
+                <button class="btn sm reset">reset</button>
+            </div>    
+            <div class="options">
+                <button class="btn lg mode">dark mode</button>
+                <button class="btn lg js-toggle-app">timer</button>
+            </div>          
+        </div>
+    </div>
+
 
   <script src="./temp/scripts/App.js"></script>
 </body>

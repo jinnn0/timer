@@ -1,18 +1,18 @@
-export function Mode(body, progressBar, buttons, modeBtn){
+export function Mode(body, progressBars, buttonContainers, modeBtns){
   let isDark = false
 
   this.change = function(){
     if(!isDark) {
       body.classList.add('js-toggle-body')
-      progressBar.classList.add('js-toggle-progress')
-      buttons.forEach(btn => btn.classList.add('js-toggle-btn'))
-      modeBtn.textContent = "white mode"
+      progressBars.forEach(bar => bar.classList.add('js-toggle-progress'))
+      buttonContainers.forEach(btn => btn.classList.add('js-toggle-btn'))
+      modeBtns.textContent = "white mode"
       isDark = true
     } else {
       body.classList.remove('js-toggle-body')
-      progressBar.classList.remove('js-toggle-progress')
-      buttons.forEach(btn => btn.classList.remove('js-toggle-btn'))
-      modeBtn.textContent = "dark mode"
+      progressBars.forEach(bar => bar.classList.remove('js-toggle-progress'))
+      buttonContainers.forEach(btn => btn.classList.remove('js-toggle-btn'))
+      modeBtns.textContent = "dark mode"
       isDark = false
     }
   }

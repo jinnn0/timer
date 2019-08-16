@@ -17,20 +17,14 @@ body {
   padding-right: 18px;
   margin: auto; }
 
-.app-container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 15vh; }
-
 .app {
   width: 90%;
   min-height: 500px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  padding-top: 15vh; }
   .app .record-container {
     width: 100%;
     display: flex;
@@ -82,8 +76,6 @@ body {
       @media (min-width: 1000px) {
         .app .record-container .time-letter {
           font-size: 3rem; } }
-  .app .record-container.timer {
-    display: none; }
   .app .progress-bar {
     width: 100%;
     height: 6px;
@@ -166,6 +158,9 @@ body {
     .app .buttons .btn:hover {
       background-color: #f7f7f7;
       color: black; }
+
+.app.timer {
+  display: none; }
 
 form {
   position: absolute;

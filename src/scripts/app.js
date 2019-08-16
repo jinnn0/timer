@@ -4,10 +4,10 @@ import {Timer} from './modules/Timer'
 
 
 // toggle bewtween stopwatch and timer
-let toggleStopwatch = document.querySelector('.js-toggleStopwatch')
-let progressBarChild = document.querySelector('.progress-bar-child')
-let stopwatchBox = document.querySelector('.record-container.stopwatch')
-let timerBox = document.querySelector('.record-container.timer')
+let toggleAppBtns = document.querySelectorAll('.js-toggle-app')
+let progressBarChildren = document.querySelectorAll('.progress-bar-child')
+let appStopwatch = document.querySelector('.app.stopwatch')
+let appTimer = document.querySelector('.app.timer')
 
 // stopwatch elements 
 let millSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
@@ -23,18 +23,20 @@ let timerMinute = document.querySelector('.timer .js-minute-num')
 let timerHour = document.querySelector('.timer .js-hour-num')
 
 // startStop button, reset button
-let toggleStartBtn = document.querySelector('.js-toggleStart')
-let resetBtn = document.querySelector('.reset')
+let toggleStartBtns = document.querySelectorAll('.js-toggleStart')
+let toggleStartStopwatch = document.querySelector('.stopwatch .js-toggleStart')
+let toggleStartTimer = document.querySelector('.timer .js-toggleStart')
+let resetBtns = document.querySelectorAll('.reset')
 
 // dark or white mode
 let body = document.querySelector('body')
-let progressBar = document.querySelector('.js-progress-bar')
-let buttons = document.querySelectorAll('.btn')
-let modeBtn = document.querySelector('.mode')
+let progressBars = document.querySelectorAll('.js-progress-bar')
+let buttonContainers = document.querySelectorAll('.btn')
+let modeBtns = document.querySelectorAll('.mode')
 
 // Instances 
 let watch = new Stopwatch(millSecondEl, secondEl, minuteEl, hourEl)
-let mode = new Mode(body, progressBar, buttons, modeBtn)
+let mode = new Mode(body, progressBars, buttonContainers, modeBtns)
 let timer
 
 let isTimer = false
@@ -46,56 +48,61 @@ form.addEventListener('submit', function(e){
 
   timer = new Timer(countdown, timerSecond, timerMinute, timerHour)
   timer.start()
-  toggleStartBtn.textContent = "stop"
+  toggleStartTimer.textContent = "stop"
   timer.isOn = true
 })
 
+toggleStartBtns.forEach(toggleSartBtn =>
+  toggleSartBtn.addEventListener('click', function(){
+    if(!isTimer){
+      (!watch.isOn) ? start() : stop()
+    } else {
+       (!timer.isOn) ? start() : stop()
+    }
+  })
+)
 
 
-// event listener implementations
-toggleStartBtn.addEventListener('click', function(){
-  if(!isTimer){
-    (!watch.isOn) ? start() : stop()
-  } else {
-     (!timer.isOn) ? start() : stop()
-  }
-})
+resetBtns.forEach(resetBtn => 
+  resetBtn.addEventListener('click', function(){
+      if(!isTimer) {
+      watch.reset()
+      toggleStartStopwatch.textContent = "start"
+    } else {
+      timer.reset()
+      toggleStartTimer.textContent = "start"
+    }
+  })
+)
 
-resetBtn.addEventListener('click', function(){
-  if(!isTimer) {
-    watch.reset()
-    toggleStartBtn.textContent = "start"
-  } else {
-    timer.reset()
-    toggleStartBtn.textContent = "start"
-  }
-})
+modeBtns.forEach(modeBtn =>
+  modeBtn.addEventListener('click', function(){
+    mode.change()
+    })
+)
 
-modeBtn.addEventListener('click', function(){
-   mode.change()
-})
 
-toggleStopwatch.addEventListener('click', function(){
-  if(!isTimer) {
-    progressBarChild.style.animation = "progressBar .7s ease-in-out forwards"
-    setTimeout(() => {progressBarChild.style.animation = null}, 500);
-    stopwatchBox.style.display = "none"
-    timerBox.style.display = "flex"
-    toggleStopwatch.textContent = "stopwatch"
-    isTimer = true
-    console.log("isTimer ", isTimer);
-  } 
-  
-  else {
-    progressBarChild.style.animation = "progressBar .7s ease-in-out forwards"
-    setTimeout(() => {progressBarChild.style.animation = null}, 500);
-    stopwatchBox.style.display = "flex"
-    timerBox.style.display = "none"
-    toggleStopwatch.textContent = "timer"
-    isTimer = false
-    console.log("isTimer ", isTimer);
-  }
-})
+toggleAppBtns.forEach(toggleAppBtn => 
+  toggleAppBtn.addEventListener('click', function(){
+      if(!isTimer) {
+        progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+        setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+        appStopwatch.style.display = "none"
+        appTimer.style.display = "flex"
+        toggleAppBtn.textContent = "timer"
+        isTimer = true
+      } 
+      
+      else {
+        progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+        setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+        appStopwatch.style.display = "flex"
+        appTimer.style.display = "none"
+        toggleAppBtn.textContent = "stopwatch"
+        isTimer = false
+      }
+    })
+  )
 
 
 
@@ -104,19 +111,19 @@ toggleStopwatch.addEventListener('click', function(){
 function start(){
   if(!isTimer) {
     watch.start()
-    toggleStartBtn.textContent = "stop"
+    toggleStartStopwatch.textContent = "stop"
   } else {
     timer.start()
-    toggleStartBtn.textContent = "stop"
+    toggleStartTimer.textContent = "stop"
   }
 }
 
 function stop(){
   if(!isTimer) {
     watch.stop()
-    toggleStartBtn.textContent = "start"
+    toggleStartStopwatch.textContent = "start"
   } else { 
     timer.stop()
-    toggleStartBtn.textContent = "start"
+    toggleStartTimer.textContent = "start"
   }
 }

@@ -23,24 +23,10 @@ body {
   margin: auto;
 }
 
-.app-container {
-  width: 100%;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-top: 15vh;
-}
-
 .app {
   width: 90%;
   min-height: 500px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,6 +37,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-top: 15vh;
 }
 
 .app .record-container {
@@ -151,10 +138,6 @@ body {
   .app .record-container .time-letter {
     font-size: 3rem;
   }
-}
-
-.app .record-container.timer {
-  display: none;
 }
 
 .app .progress-bar {
@@ -323,6 +306,10 @@ body {
 .app .buttons .btn:hover {
   background-color: #f7f7f7;
   color: black;
+}
+
+.app.timer {
+  display: none;
 }
 
 form {

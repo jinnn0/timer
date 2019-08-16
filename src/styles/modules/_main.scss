@@ -1,31 +1,12 @@
-// see the layouts
-.app-container,
-.stop-watch,
-.current-record,
-.time-box,
-.time,
-.progress-bar,
-.buttons,
-.btn {
-  // border: 1px solid black;
-} 
-
-.app-container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 15vh;
-}
-
-
 .app {
+    // background-color: rgb(249, 249, 196);
     width: 90%;
     min-height: 500px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     flex-direction: column;
+     padding-top: 15vh;
 
             .record-container {
               width: 100%;
@@ -94,17 +75,6 @@
                         }
                       }
              }
-
-             .record-container.stopwatch {
-              //  background-color: pink;
-             }
-
-             .record-container.timer {
-              //  background-color: rgb(254, 255, 192);
-               display: none;
-             }
-
-          
 
             .progress-bar {
               width: 100%;
@@ -230,9 +200,15 @@
     }
 
 
+.app.timer {
+  // background-color: antiquewhite;
+  display: none;
+}
 
 form {
   position: absolute;
   top: 50px;
   left: 45%;
 }
+
+
