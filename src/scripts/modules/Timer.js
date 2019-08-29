@@ -1,4 +1,4 @@
-export function Timer(countdown, tSecond, tMinute, tHour){
+export function Timer(countdown, tSecond, tMinute, tHour, tProgressbar){
 
   let timer = countdown
   let second, minute, hour
@@ -16,7 +16,15 @@ export function Timer(countdown, tSecond, tMinute, tHour){
     if(timer -- < 0) {
       timer = countdown
     }
+   
+    progressbar()
 }
+
+  let progressbar = function(){
+    // console.log("countdown ", countdown, "max ", tProgressbar.max, "timer ", timer, "timer passded", countdown - timer, "value ", tProgressbar.value);
+    tProgressbar.value = ((countdown - timer) / countdown) * 100
+
+  }
 
   this.isOne = false
 
@@ -24,7 +32,6 @@ export function Timer(countdown, tSecond, tMinute, tHour){
     if(!this.isOn) {
       interval = window.setInterval(update, 1000)
       this.isOn = true
-
     } 
   }
 
@@ -46,4 +53,5 @@ export function Timer(countdown, tSecond, tMinute, tHour){
     tHour.textContent = "00"
     this.isOn = false
   }
+
 }

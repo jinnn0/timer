@@ -310,6 +310,54 @@ body {
   display: none;
 }
 
+.app.timer progress[value] {
+  width: 1000px;
+  margin-top: 50px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+
+.app.timer progress[value]::-webkit-progress-bar {
+  background-color: #dfdfdf;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.app.timer progress[value]::-webkit-progress-value {
+  border-radius: 20px;
+  background-color: pink;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  -webkit-animation: bar .3s ease;
+          animation: bar .3s ease;
+}
+
+@-webkit-keyframes bar {
+  0% {
+    width: 0% !important;
+  }
+  50% {
+    width: 100% !important;
+  }
+  100% {
+    width: 0% !important;
+  }
+}
+
+@keyframes bar {
+  0% {
+    width: 0% !important;
+  }
+  50% {
+    width: 100% !important;
+  }
+  100% {
+    width: 0% !important;
+  }
+}
+
 form {
   position: absolute;
   top: 0px;
@@ -325,7 +373,7 @@ form input {
   height: 100px;
   padding: 20px;
   outline: none;
-  background-color: none;
+  background-color: rgba(255, 255, 255, 0);
   letter-spacing: 1px;
   border: none;
   border-bottom: 1px solid black;

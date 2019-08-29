@@ -128,6 +128,9 @@ let toggleStartStopwatch = document.querySelector('.stopwatch .js-toggleStart')
 let toggleStartTimer = document.querySelector('.timer .js-toggleStart')
 let resetBtns = document.querySelectorAll('.reset')
 
+// 
+let progressbar = document.querySelector('progress')
+
 // dark or white mode
 let body = document.querySelector('body')
 let progressBars = document.querySelectorAll('.js-progress-bar')
@@ -146,7 +149,7 @@ form.addEventListener('submit', function(e){
   let userInput = inputEl.value
   let countdown = 60 * userInput
 
-  timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_2__["Timer"](countdown, timerSecond, timerMinute, timerHour)
+  timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_2__["Timer"](countdown, timerSecond, timerMinute, timerHour, progressbar)
   timer.start()
   toggleStartTimer.textContent = "stop"
   timer.isOn = true
@@ -184,8 +187,8 @@ modeBtns.forEach(modeBtn =>
 
 toggleAppBtns.forEach(toggleAppBtn => 
   toggleAppBtn.addEventListener('click', function(){
-    console.log("change to timer");
       if(!isTimer) {
+        console.log( toggleAppBtn.textContent);
         progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
         setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
         appStopwatch.style.display = "none"
@@ -195,7 +198,7 @@ toggleAppBtns.forEach(toggleAppBtn =>
       } 
       
       else {
-        console.log("change to stopwatch");
+        console.log( toggleAppBtn.textContent);
         progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
         setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
         appStopwatch.style.display = "flex"
@@ -230,6 +233,12 @@ function stop(){
   }
 }
 
+
+function Progressbar(){
+
+
+}
+// Progressbar()
 
 /***/ }),
 
@@ -352,7 +361,7 @@ function Stopwatch(millSecondEl, secondEl, minuteEl, hourEl) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Timer", function() { return Timer; });
-function Timer(countdown, tSecond, tMinute, tHour){
+function Timer(countdown, tSecond, tMinute, tHour, tProgressbar){
 
   let timer = countdown
   let second, minute, hour
@@ -370,7 +379,15 @@ function Timer(countdown, tSecond, tMinute, tHour){
     if(timer -- < 0) {
       timer = countdown
     }
+   
+    progressbar()
 }
+
+  let progressbar = function(){
+    // console.log("countdown ", countdown, "max ", tProgressbar.max, "timer ", timer, "timer passded", countdown - timer, "value ", tProgressbar.value);
+    tProgressbar.value = ((countdown - timer) / countdown) * 100
+
+  }
 
   this.isOne = false
 
@@ -378,7 +395,6 @@ function Timer(countdown, tSecond, tMinute, tHour){
     if(!this.isOn) {
       interval = window.setInterval(update, 1000)
       this.isOn = true
-
     } 
   }
 
@@ -400,6 +416,7 @@ function Timer(countdown, tSecond, tMinute, tHour){
     tHour.textContent = "00"
     this.isOn = false
   }
+
 }
 
 
