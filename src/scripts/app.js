@@ -1,7 +1,7 @@
 import {Stopwatch} from './modules/Stopwatch'
 import {Mode} from './modules/Mode'
 import {Timer} from './modules/Timer'
-
+ 
 
 // toggle bewtween stopwatch and timer
 let toggleAppBtns = document.querySelectorAll('.js-toggle-app')

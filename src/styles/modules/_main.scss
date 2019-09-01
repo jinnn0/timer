@@ -36,10 +36,10 @@
                           width: 116px;
                           font-size: 6.5rem;
                         }
-                        @include atLarge {
+                        @include atLarge { 
                           width: 174.5px;
                           font-size: 9.8rem;
-                        }
+                        } 
                       }
 
                       .millsecond-container {

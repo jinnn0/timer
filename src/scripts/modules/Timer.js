@@ -1,5 +1,5 @@
 export function Timer(countdown, tSecond, tMinute, tHour, tProgressbar){
-
+ 
   let timer = countdown
   let second, minute, hour
   let interval = null

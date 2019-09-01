@@ -1,6 +1,6 @@
 export function Mode(body, progressBars, buttonContainers, modeBtns){
   let isDark = false
-
+ 
   this.change = function(){
     if(!isDark) {
       body.classList.add('js-toggle-body')

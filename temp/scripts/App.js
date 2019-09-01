@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ 
 
 // toggle bewtween stopwatch and timer
 let toggleAppBtns = document.querySelectorAll('.js-toggle-app')
@@ -254,7 +254,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Mode", function() { return Mode; });
 function Mode(body, progressBars, buttonContainers, modeBtns){
   let isDark = false
-
+ 
   this.change = function(){
     if(!isDark) {
       body.classList.add('js-toggle-body')
@@ -286,7 +286,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Stopwatch", function() { return Stopwatch; });
 function Stopwatch(millSecondEl, secondEl, minuteEl, hourEl) {
   let interval = null 
-  
+   
   let millSecond = 0
   let second = 0
   let minute = 0
@@ -362,7 +362,7 @@ function Stopwatch(millSecondEl, secondEl, minuteEl, hourEl) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Timer", function() { return Timer; });
 function Timer(countdown, tSecond, tMinute, tHour, tProgressbar){
-
+ 
   let timer = countdown
   let second, minute, hour
   let interval = null
