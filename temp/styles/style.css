@@ -80,7 +80,7 @@ body {
         .app .record-container .time-letter {
           font-size: 3rem; } }
   .app .progress-bar {
-    width: 100%;
+    width: 90%;
     height: 6px;
     border-radius: 10px;
     background-color: #cecece64;
@@ -90,9 +90,11 @@ body {
     overflow-x: hidden; }
     @media (min-width: 500px) {
       .app .progress-bar {
-        width: 85%; } }
+        max-width: 93%; } }
     @media (min-width: 750px) {
       .app .progress-bar {
+        width: 80%;
+        max-width: 880px;
         height: 10px; } }
   .app .progress-bar-child {
     position: absolute;
@@ -120,6 +122,13 @@ body {
     @media (min-width: 500px) {
       .app .buttons {
         width: 75%; } }
+    @media (min-width: 500px) {
+      .app .buttons {
+        max-width: 93%; } }
+    @media (min-width: 750px) {
+      .app .buttons {
+        width: 80%;
+        max-width: 880px; } }
     .app .buttons .functions,
     .app .buttons .options {
       width: 100%;
@@ -167,46 +176,52 @@ body {
 
 .app.timer {
   display: none; }
-  .app.timer progress[value] {
-    width: 1000px;
-    margin-top: 50px;
-    -webkit-appearance: none;
-    appearance: none; }
-  .app.timer progress[value]::-webkit-progress-bar {
-    background-color: #dfdfdf;
-    border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; }
-  .app.timer progress[value]::-webkit-progress-value {
-    border-radius: 20px;
-    background-color: pink;
-    transition: all .3s ease;
-    animation: bar .3s ease; }
-
-@keyframes bar {
-  0% {
-    width: 0% !important; }
-  50% {
-    width: 100% !important; }
-  100% {
-    width: 0% !important; } }
+  .app.timer .record-container.timer {
+    display: none; }
 
 .form-container {
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex; }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  @media (min-width: 500px) {
+    .form-container {
+      width: 93%; } }
+  @media (min-width: 750px) {
+    .form-container {
+      width: 85%; } }
   .form-container span {
     margin-right: 10px; }
+    @media (min-width: 1000px) {
+      .form-container span {
+        font-size: 2rem;
+        margin-right: 25px; } }
   .form-container input {
     padding: 0;
     text-align: center;
-    width: 45px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     outline: none;
     letter-spacing: 1px;
     border: none;
-    font-size: 2.5rem; }
+    background-color: transparent;
+    font-size: 4rem; }
+    @media (min-width: 500px) {
+      .form-container input {
+        width: 80px;
+        height: 80px;
+        font-size: 4rem; } }
+    @media (min-width: 750px) {
+      .form-container input {
+        width: 150px;
+        height: 100px;
+        font-size: 7.6rem; } }
+    @media (min-width: 1000px) {
+      .form-container input {
+        width: 200px;
+        height: 150px;
+        font-size: 11rem; } }
   .form-container input::placeholder {
     color: rgba(169, 169, 169, 0.632); }
+  .form-container .js-toggle-input {
+    color: white; }

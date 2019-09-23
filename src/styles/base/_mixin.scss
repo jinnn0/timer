@@ -5,7 +5,7 @@
 @mixin atSmall { 
   @media (min-width: 500px) {
     @content
-  }
+  } 
 }  
 
 @mixin atMedium {

@@ -11,7 +11,6 @@ export function Stopwatch(){
   function update(){ 
     if(this.isOn){
       time += delta()
-      console.log("time", time, "delta returns", delta());
     }
 
     timeFormatter(time)

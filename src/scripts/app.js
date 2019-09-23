@@ -37,8 +37,8 @@ let modeBtns = document.querySelectorAll('.mode')
 
 // Instances 
 let watch = new Stopwatch()
-let mode = new Mode(body, progressBars, buttonContainers, modeBtns)
-// let timer
+let mode = new Mode(body, progressBars, inputs, buttonContainers, modeBtns)
+let timer
 
 let isTimer = false
 
@@ -78,7 +78,7 @@ form.addEventListener('submit', function(e){
       seconds: inputs[2].value
     }
   }
-  let timer = new Timer(usrInput)
+  timer = new Timer(usrInput)
   timer.start()
   toggleStartTimer.textContent = "stop"
 })
@@ -93,48 +93,6 @@ toggleStartBtns.forEach(toggleStartBtn =>
     }
   })
 )
-
-
-resetBtns.forEach(resetBtn => 
-  resetBtn.addEventListener('click', () => {
-      if(!isTimer) {
-      watch.reset()
-      toggleStartStopwatch.textContent = "start"
-    } else {
-      timer.reset()
-      toggleStartTimer.textContent = "start"
-    }
-  })
-)
-
-
-// modeBtns.forEach(modeBtn =>
-//   modeBtn.addEventListener('click', () => {
-//     mode.change()
-//     })
-// )
-
-toggleAppBtns.forEach(toggleAppBtn => 
-  toggleAppBtn.addEventListener('click', () => {
-      if(!isTimer) {
-        toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "stopwatch")
-        appTimer.style.display = "flex"
-        appStopwatch.style.display = "none"
-        progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
-        setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
-        isTimer = true
-      } else {
-          toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "timer")
-          appTimer.style.display = "none"
-          appStopwatch.style.display = "flex"
-          progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
-          setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
-          isTimer = false
-        }
-    })
-  ) 
-
-
 
 // start and stop functions 
 function start(){
@@ -156,3 +114,43 @@ function stop(){
     toggleStartTimer.textContent = "start"
   }
 }
+
+
+resetBtns.forEach(resetBtn => 
+  resetBtn.addEventListener('click', () => {
+      if(!isTimer) {
+      watch.reset()
+      toggleStartStopwatch.textContent = "start"
+    } else {
+      timer.reset()
+      toggleStartTimer.textContent = "start"
+    }
+  })
+)
+
+
+modeBtns.forEach(modeBtn =>
+  modeBtn.addEventListener('click', () => {
+    mode.change()
+    })
+)
+
+toggleAppBtns.forEach(toggleAppBtn => 
+  toggleAppBtn.addEventListener('click', () => {
+      if(!isTimer) {
+        toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "stopwatch")
+        appTimer.style.display = "flex"
+        appStopwatch.style.display = "none"
+        progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+        setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+        isTimer = true
+      } else {
+          toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "timer")
+          appTimer.style.display = "none"
+          appStopwatch.style.display = "flex"
+          progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+          setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+          isTimer = false
+        }
+    })
+  ) 

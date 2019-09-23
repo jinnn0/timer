@@ -1,7 +1,7 @@
 export function Timer(usrInput){
-  let secondEl = document.querySelector('.timer .js-second-num')
-  let minuteEl = document.querySelector('.timer .js-minute-num')
-  let hourEl = document.querySelector('.timer .js-hour-num')
+  let secondEl = document.querySelector('.timer .seconds')
+  let minuteEl = document.querySelector('.timer .minutes')
+  let hourEl = document.querySelector('.timer .hours')
   let progressBarChild = document.querySelector('.timer .js-progress-bar-timer-child')
  
   let interval
@@ -32,23 +32,20 @@ export function Timer(usrInput){
   }
 
   this.reset = ()=>{
-    if(this.isOn){
       countDownMilliseconds = 0
       clearInterval(interval) 
       interval = null 
       this.isOn = false
-      
-      secondEl.textContent = "00"
-      minuteEl.textContent = "00"
-      hourEl.textContent = "00"
-    }
+
+      secondEl.value = "00"
+      minuteEl.value = "00"
+      hourEl.value = "00"
   }
 
   let update = ()=>{
     if(this.isOn) {
       timeFormatter()
-      updateProgressBar()
-
+      initialcountDownMilliseconds = countDownMilliseconds
       remaining = countDownMilliseconds -= delta()
     }
   }
@@ -58,24 +55,21 @@ export function Timer(usrInput){
     let timePassed = now - offSet 
     offSet = now 
 
-    // console.log("in delta:", countDownMilliseconds);
-
     return timePassed
   }
 
   let timeFormatter = ()=>{
-    // console.log("in formatter:", countDownMilliseconds);
+    updateProgressBar()
 
     let formattedSeconds = Math.floor(Math.round(countDownMilliseconds / 1000) % 60).toString()
-    let formattedMinutes = Math.floor(Math.round(countDownMilliseconds / (1000 * 60)) % 60).toString()
-    let formattedHours = Math.floor(Math.round(countDownMilliseconds / (1000 * 60 * 60)) % 24).toString()
+    let formattedMinutes = Math.floor((countDownMilliseconds / (1000 * 60)) % 60).toString()
+    let formattedHours = Math.floor((countDownMilliseconds / (1000 * 60 * 60)) % 24).toString()
     
-    // console.log(countDownMilliseconds, formattedMinutes);
-    secondEl.textContent = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
-    minuteEl.textContent = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
-    hourEl.textContent = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
+    secondEl.value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
+    minuteEl.value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
+    hourEl.value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
 
-    if(formattedSeconds < 0) {
+    if(countDownMilliseconds < 0) {
       this.reset()
     }
   }
