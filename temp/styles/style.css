@@ -54,10 +54,11 @@ body {
           font-size: 9.8rem; } }
     .app .record-container .millsecond-container {
       align-self: flex-end;
-      margin-bottom: 4px; }
+      margin-bottom: 4px;
+      width: 38px; }
       @media (min-width: 500px) {
         .app .record-container .millsecond-container {
-          margin-bottom: 8px; } }
+          margin-bottom: 12px; } }
       @media (min-width: 750px) {
         .app .record-container .millsecond-container {
           margin-bottom: 17px; } }
@@ -65,8 +66,11 @@ body {
         .app .record-container .millsecond-container {
           margin-bottom: 28px; } }
     .app .record-container .millsecond {
-      font-size: 2rem;
+      font-size: 1rem;
       width: auto; }
+      @media (min-width: 750px) {
+        .app .record-container .millsecond {
+          font-size: 2rem; } }
     .app .record-container .time-letter {
       font-size: 1.5rem; }
       @media (min-width: 750px) {
@@ -97,7 +101,7 @@ body {
     height: 100%;
     background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     transform: translateX(-100%);
-    transition: all .1s ease-in; }
+    transition: all .3s ease-in-out; }
 
 @keyframes progressBar {
   0% {
@@ -158,6 +162,9 @@ body {
       background-color: #f7f7f7;
       color: black; }
 
+.app.stopwatch {
+  display: flex; }
+
 .app.timer {
   display: none; }
   .app.timer progress[value] {
@@ -183,23 +190,23 @@ body {
   100% {
     width: 0% !important; } }
 
-form {
+.form-container {
   position: absolute;
   top: 0px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10; }
-  form input {
+  z-index: 10;
+  display: flex; }
+  .form-container span {
+    margin-right: 10px; }
+  .form-container input {
+    padding: 0;
     text-align: center;
-    width: 500px;
-    height: 100px;
-    padding: 20px;
+    width: 45px;
+    height: 70px;
     outline: none;
-    background-color: rgba(255, 255, 255, 0);
     letter-spacing: 1px;
     border: none;
-    border-bottom: 1px solid black;
-    font-size: 1.7rem; }
-  form input::placeholder {
-    padding-left: 5px;
+    font-size: 2.5rem; }
+  .form-container input::placeholder {
     color: rgba(169, 169, 169, 0.632); }

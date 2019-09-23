@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- 
+     
 
 // toggle bewtween stopwatch and timer
 let toggleAppBtns = document.querySelectorAll('.js-toggle-app')
@@ -116,11 +116,9 @@ let minuteEl = document.querySelector('.stopwatch .js-minute-num')
 let hourEl = document.querySelector('.stopwatch .js-hour-num')
 
 // timer elements 
-let form = document.querySelector('form')
-let inputEl = document.querySelector('input')
-let timerSecond = document.querySelector('.timer .js-second-num')
-let timerMinute = document.querySelector('.timer .js-minute-num')
-let timerHour = document.querySelector('.timer .js-hour-num')
+let form = document.querySelector('.form')
+let inputs = document.querySelectorAll('.form input[type="text"]')
+
 
 // startStop button, reset button
 let toggleStartBtns = document.querySelectorAll('.js-toggleStart')
@@ -128,8 +126,8 @@ let toggleStartStopwatch = document.querySelector('.stopwatch .js-toggleStart')
 let toggleStartTimer = document.querySelector('.timer .js-toggleStart')
 let resetBtns = document.querySelectorAll('.reset')
 
-// 
-let progressbar = document.querySelector('progress')
+// progressbar
+let progressBarChild = document.querySelector('.progress-bar-child')
 
 // dark or white mode
 let body = document.querySelector('body')
@@ -138,25 +136,56 @@ let buttonContainers = document.querySelectorAll('.btn')
 let modeBtns = document.querySelectorAll('.mode')
 
 // Instances 
-let watch = new _modules_Stopwatch__WEBPACK_IMPORTED_MODULE_0__["Stopwatch"](millSecondEl, secondEl, minuteEl, hourEl)
+let watch = new _modules_Stopwatch__WEBPACK_IMPORTED_MODULE_0__["Stopwatch"]()
 let mode = new _modules_Mode__WEBPACK_IMPORTED_MODULE_1__["Mode"](body, progressBars, buttonContainers, modeBtns)
-let timer
+// let timer
 
 let isTimer = false
 
-form.addEventListener('submit', function(e){
-  e.preventDefault()
-  let userInput = inputEl.value
-  let countdown = 60 * userInput
 
-  timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_2__["Timer"](countdown, timerSecond, timerMinute, timerHour, progressbar)
+for(let i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('input', function(e){
+    if(this.value.length == 2) {
+      //move to the next input, if any
+      let nextNext = this.nextElementSibling.nextElementSibling
+      if(nextNext && nextNext.type == 'text') {
+        this.blur()
+        nextNext.focus()
+      }
+    }
+
+    else if (this.value.length == 0 ) {
+      let previous = this.previousElementSibling
+      if(!previous){
+        return;
+      }
+      let previousPrevious = this.previousElementSibling.previousElementSibling
+      if(previousPrevious && previousPrevious.type == 'text') {
+        this.blur()
+        previousPrevious.focus()
+      }
+    }
+  })
+}
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  let usrInput
+  for(let i = 0; i < inputs.length; i++){
+    usrInput = {
+      hours: inputs[0].value,
+      minutes: inputs[1].value,
+      seconds: inputs[2].value
+    }
+  }
+  let timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_2__["Timer"](usrInput)
   timer.start()
   toggleStartTimer.textContent = "stop"
-  timer.isOn = true
 })
 
-toggleStartBtns.forEach(toggleSartBtn =>
-  toggleSartBtn.addEventListener('click', function(){
+// toggle buttons
+toggleStartBtns.forEach(toggleStartBtn =>
+  toggleStartBtn.addEventListener('click', function(){
     if(!isTimer){
       (!watch.isOn) ? start() : stop()
     } else {
@@ -167,7 +196,7 @@ toggleStartBtns.forEach(toggleSartBtn =>
 
 
 resetBtns.forEach(resetBtn => 
-  resetBtn.addEventListener('click', function(){
+  resetBtn.addEventListener('click', () => {
       if(!isTimer) {
       watch.reset()
       toggleStartStopwatch.textContent = "start"
@@ -178,37 +207,32 @@ resetBtns.forEach(resetBtn =>
   })
 )
 
-modeBtns.forEach(modeBtn =>
-  modeBtn.addEventListener('click', function(){
-    mode.change()
-    })
-)
 
+// modeBtns.forEach(modeBtn =>
+//   modeBtn.addEventListener('click', () => {
+//     mode.change()
+//     })
+// )
 
 toggleAppBtns.forEach(toggleAppBtn => 
-  toggleAppBtn.addEventListener('click', function(){
+  toggleAppBtn.addEventListener('click', () => {
       if(!isTimer) {
-        console.log( toggleAppBtn.textContent);
-        progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
-        setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
-        appStopwatch.style.display = "none"
+        toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "stopwatch")
         appTimer.style.display = "flex"
-        toggleAppBtn.textContent = "timer"
-        isTimer = true
-      } 
-      
-      else {
-        console.log( toggleAppBtn.textContent);
+        appStopwatch.style.display = "none"
         progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
         setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
-        appStopwatch.style.display = "flex"
-        appTimer.style.display = "none"
-        toggleAppBtn.textContent = "stopwatch"
-        isTimer = false
-      }
+        isTimer = true
+      } else {
+          toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "timer")
+          appTimer.style.display = "none"
+          appStopwatch.style.display = "flex"
+          progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+          setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+          isTimer = false
+        }
     })
-  )
-
+  ) 
 
 
 
@@ -233,13 +257,6 @@ function stop(){
   }
 }
 
-
-function Progressbar(){
-
-
-}
-// Progressbar()
-
 /***/ }),
 
 /***/ "./src/scripts/modules/Mode.js":
@@ -253,24 +270,25 @@ function Progressbar(){
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Mode", function() { return Mode; });
 function Mode(body, progressBars, buttonContainers, modeBtns){
-  let isDark = false
- 
-  this.change = function(){
-    if(!isDark) {
+  this.isDark = false
+  
+  this.change = () => {
+    if(!this.isDark) {
       body.classList.add('js-toggle-body')
       progressBars.forEach(bar => bar.classList.add('js-toggle-progress'))
       buttonContainers.forEach(btn => btn.classList.add('js-toggle-btn'))
-      modeBtns.textContent = "white mode"
-      isDark = true
+      modeBtns.forEach(modeBtn => modeBtn.textContent = "white mode")
+      this.isDark = true
     } else {
-      body.classList.remove('js-toggle-body')
-      progressBars.forEach(bar => bar.classList.remove('js-toggle-progress'))
-      buttonContainers.forEach(btn => btn.classList.remove('js-toggle-btn'))
-      modeBtns.textContent = "dark mode"
-      isDark = false
+        body.classList.remove('js-toggle-body')
+        progressBars.forEach(bar => bar.classList.remove('js-toggle-progress'))
+        buttonContainers.forEach(btn => btn.classList.remove('js-toggle-btn'))
+        modeBtns.forEach(modeBtn => modeBtn.textContent = "dark mode")
+        this.isDark = false
     }
   }
 }
+
 
 /***/ }),
 
@@ -284,70 +302,75 @@ function Mode(body, progressBars, buttonContainers, modeBtns){
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Stopwatch", function() { return Stopwatch; });
-function Stopwatch(millSecondEl, secondEl, minuteEl, hourEl) {
-  let interval = null 
-   
-  let millSecond = 0
-  let second = 0
-  let minute = 0
-  let hour = 0
+function Stopwatch(){
+  let millSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
+  let secondEl = document.querySelector('.stopwatch .js-second-num')
+  let minuteEl = document.querySelector('.stopwatch .js-minute-num')
+  let hourEl = document.querySelector('.stopwatch .js-hour-num')
 
-  let update = function(){
-    millSecond ++
-
-    if(millSecond / 10 === 1) {
-      millSecond = 0
-      second ++
+  let interval 
+  let time = 0
+  let offSet
+ 
+  function update(){ 
+    if(this.isOn){
+      time += delta()
+      console.log("time", time, "delta returns", delta());
     }
 
-    if(second / 60 === 1) {
-      second = 0
-      minute ++
-    }
-
-    if(minute / 60 === 1) {
-      minute = 0
-      hour ++
-    }
+    timeFormatter(time)
+  }
+  
+  function delta(){
+    let now = Date.now()
+    let timePassed = now - offSet
+    offSet = now
+    return timePassed
+  }
+  
+  function timeFormatter(timeMilliseconds){
+    let time = new Date(timeMilliseconds)
+    let millSeconds = (time.getMilliseconds() / 10).toFixed(0)
+    let seconds = time.getSeconds().toString()
+    let minutes = time.getMinutes().toString()
+    let hours = time.getUTCHours().toString()
     
-    
-    millSecondEl.textContent = millSecond
-    secondEl.textContent = (second < 10) ? `0${second}` : second;
-    minuteEl.textContent = (minute < 10) ? `0${minute}` : minute;
-    hourEl.textContent = (hour < 10) ? `0${hour}` : hour;
-}
+    millSecondEl.textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
+    secondEl.textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
+    minuteEl.textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
+    hourEl.textContent = (hours.length < 2) ? `0${hours}` : hours;
+  }
+
 
   this.isOn = false
 
-  this.start = function (){
-    if(!this.isOn) {
-      interval = window.setInterval(update, 100);
+  this.start = function(){
+    if(!this.isOn){
+      interval = setInterval(update.bind(this), 100)
       this.isOn = true
-    } 
+      offSet = Date.now()
+    }
   }
 
-  this.stop = function (){
-    if(this.isOn) {
-      window.clearInterval(interval)
+  this.stop = function(){
+    if(this.isOn){
+      clearInterval(interval)
+      interval = null
       this.isOn = false
     }
   }
 
-  this.reset = function (){
-    window.clearInterval(interval)
-    millSecond = 0
-    second = 0
-    minute = 0
-    hour = 0
+  this.reset = function(){
+    time = 0
+    clearInterval(interval)
+    interval = null
 
-    millSecondEl.textContent = "0"
+    millSecondEl.textContent = "00"
     secondEl.textContent = "00"
     minuteEl.textContent = "00"
     hourEl.textContent = "00"
-    this.isOn = false
   }
 }
-
 
 /***/ }),
 
@@ -361,63 +384,97 @@ function Stopwatch(millSecondEl, secondEl, minuteEl, hourEl) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Timer", function() { return Timer; });
-function Timer(countdown, tSecond, tMinute, tHour, tProgressbar){
+function Timer(usrInput){
+  let secondEl = document.querySelector('.timer .js-second-num')
+  let minuteEl = document.querySelector('.timer .js-minute-num')
+  let hourEl = document.querySelector('.timer .js-hour-num')
+  let progressBarChild = document.querySelector('.timer .js-progress-bar-timer-child')
  
-  let timer = countdown
-  let second, minute, hour
-  let interval = null
+  let interval
+  let offSet
+  let remaining
+  let seconds = (usrInput.seconds) * 1000
+  let minutes = (usrInput.minutes) * 60000
+  let hours = (usrInput.hours) * 3600000
+  let initialcountDownMilliseconds = seconds + minutes + hours
+  let countDownMilliseconds = seconds + minutes + hours
 
-  let update = function(){
-    second = parseInt(timer % 60, 10)
-    minute = (timer >= 3600) ? parseInt((timer /60) % 60, 10) : parseInt(timer / 60, 10)
-    hour = parseInt(timer / 3600, 10)
+  this.isOn = false
 
-    tSecond.textContent = (second < 10) ? `0${second}` : second;
-    tMinute.textContent = (minute < 10) ? `0${minute}` : minute;
-    tHour.textContent = (hour < 10) ? `0${hour}` : hour;
-
-    if(timer -- < 0) {
-      timer = countdown
-    }
-   
-    progressbar()
-}
-
-  let progressbar = function(){
-    // console.log("countdown ", countdown, "max ", tProgressbar.max, "timer ", timer, "timer passded", countdown - timer, "value ", tProgressbar.value);
-    tProgressbar.value = ((countdown - timer) / countdown) * 100
-
-  }
-
-  this.isOne = false
-
-  this.start = function (){
-    if(!this.isOn) {
-      interval = window.setInterval(update, 1000)
+  this.start = function(){
+    if(!this.isOn){
+      interval = setInterval(update.bind(this), 1000)
       this.isOn = true
-    } 
+      offSet = Date.now()
+    }
   }
 
-  this.stop = function (){
-    if(this.isOn) {
-      window.clearInterval(interval)
+  this.stop = function(){
+    if(this.isOn){
+      clearInterval(interval)
+      interval = null
       this.isOn = false
     }
   }
 
-  this.reset = function (){
-    window.clearInterval(interval)
-    second = 0
-    minute = 0
-    hour = 0
-
-    tSecond.textContent = "00"
-    tMinute.textContent = "00"
-    tHour.textContent = "00"
-    this.isOn = false
+  this.reset = ()=>{
+    if(this.isOn){
+      countDownMilliseconds = 0
+      clearInterval(interval) 
+      interval = null 
+      this.isOn = false
+      
+      secondEl.textContent = "00"
+      minuteEl.textContent = "00"
+      hourEl.textContent = "00"
+    }
   }
 
-}
+  let update = ()=>{
+    if(this.isOn) {
+      timeFormatter()
+      updateProgressBar()
+
+      remaining = countDownMilliseconds -= delta()
+    }
+  }
+
+  let delta = ()=>{
+    let now = Date.now()  
+    let timePassed = now - offSet 
+    offSet = now 
+
+    // console.log("in delta:", countDownMilliseconds);
+
+    return timePassed
+  }
+
+  let timeFormatter = ()=>{
+    // console.log("in formatter:", countDownMilliseconds);
+
+    let formattedSeconds = Math.floor(Math.round(countDownMilliseconds / 1000) % 60).toString()
+    let formattedMinutes = Math.floor(Math.round(countDownMilliseconds / (1000 * 60)) % 60).toString()
+    let formattedHours = Math.floor(Math.round(countDownMilliseconds / (1000 * 60 * 60)) % 24).toString()
+    
+    // console.log(countDownMilliseconds, formattedMinutes);
+    secondEl.textContent = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
+    minuteEl.textContent = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
+    hourEl.textContent = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
+
+    if(formattedSeconds < 0) {
+      this.reset()
+    }
+  }
+
+  let defaultTransform = -100
+  let updateProgressBar = ()=>{
+    if(this.isOn) {
+      let progress = ((initialcountDownMilliseconds-remaining) / initialcountDownMilliseconds) * 100
+      let moveToRight = defaultTransform + progress 
+      progressBarChild.style.transform = `translateX(${moveToRight}%)`
+    }
+  }
+} 
 
 
 /***/ })

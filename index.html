@@ -1,14 +1,14 @@
 <!DOCTYPE html> 
 <html lang="en">    
-<head> 
+<head>  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://kit.fontawesome.com/719e11e253.js"></script>
   <link rel="stylesheet" href="./temp/styles/style.css">
   <title>Timer</title>
-</head>
+</head> 
 <body>
+<!-- stopwatch app -->
     <div class="app stopwatch">
         <div class="record-container stopwatch">
             <div class="time-box">
@@ -20,11 +20,11 @@
                 <span class="time-letter">m</span> 
             </div>  
             <div class="time-box">
-                <span class="time box js-second-num stopwatch">00</span>
+                <span class="time js-second-num stopwatch">00</span>
                 <span class="time-letter">s</span>
             </div>
             <div class="time-box millsecond-container">
-                <span class="time box js-millsecond-num millsecond stopwatch">0</span>
+                <span class="millsecond js-millsecond-num stopwatch">00</span>
             </div>
         </div>
 
@@ -44,10 +44,21 @@
         </div>
     </div>
 
+<!-- timer app -->
     <div class="app timer">
-        <form action="">
-            <input type="text" placeholder="onlye accpet in minutes..">
-        </form>
+        <div class="form-container">
+            <form class="form" action=""> 
+                <input class="hours" type="text" maxlength="2" placeholder="00">
+                <span>h</span>
+                <input class="minutes" type="text" maxlength="2" placeholder="00">
+                <span>m</span>
+                <input class="seconds" type="text" maxlength="2" placeholder="00"> 
+                <span>s</span>
+                <!-- An input type='submit' is needed, otherwise the form will never submit when Enter is hit.-->
+                <input type='submit' value='submit' style='display:none'/>
+            </form>
+        </div>
+
         <div class="record-container timer">
             <div class="time-box">
                 <span class="time js-hour-num timer">00</span>
@@ -62,10 +73,12 @@
                 <span class="time-letter">s</span>
             </div>
         </div>
- 
-        <div class="progress-bar js-progress-bar">
-            <div class="progress-bar-child"></div>
+
+        <div class="progress-bar js-progress-bar js-progress-bar-timer">
+            <div class="progress-bar-child js-progress-bar-timer-child"></div>
         </div>        
+
+        <!-- <progress value="20" max="100" class="progress-bar-html"></progress>  -->
 
         <div class="buttons">
             <div class="functions">
@@ -78,10 +91,7 @@
             </div>           
         </div>  
 
-        <progress value="20" max="100"></progress>
     </div>
-
-
 
   <script src="./temp/scripts/App.js"></script>
 </body>
