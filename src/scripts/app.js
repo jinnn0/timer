@@ -81,6 +81,8 @@ form.addEventListener('submit', function(e){
   timer = new Timer(usrInput)
   timer.start()
   toggleStartTimer.textContent = "stop"
+
+  inputs.forEach(input => input.blur())
 })
 
 // toggle buttons

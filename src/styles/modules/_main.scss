@@ -1,9 +1,4 @@
-* {
-  // border: 1px solid black;
-}
-  
-.app {
-    // background-color: rgb(249, 249, 196);
+ .app {
     width: 90%;
     min-height: 500px;
     margin: 0 auto;
@@ -17,21 +12,19 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              // transition: all .1s ease-in-out;       
 
               @include atSmall {
                 width: 80%;
               }
-
               @include atMedium {
                 width: 75%;
               }
 
                       .time {
-                        // transition: all .1s ease-in-out;
                         transition: background-color .7s ease;
                         display: inline-block;
                         font-size: 3.5rem;
+
                         @include atSmall {
                           width: 80px;
                           font-size: 4.5rem;
@@ -213,10 +206,12 @@
 
 .app.stopwatch {
   display: flex;
+  // display: none;
 }
 
 .app.timer {
   display: none;
+  // display: flex;
 
         .record-container.timer {
           display: none;
@@ -228,13 +223,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 18px;
 
   @include atSmall {
     width: 93%;
   }
-
   @include atMedium {
     width: 85%;
+    margin-bottom: 10px;
   }
 
       span {
@@ -272,7 +268,7 @@
         @include atLarge {
           width: 200px;
           height: 150px;
-          font-size: 11rem;
+          font-size: 10rem;
         }
       }
 

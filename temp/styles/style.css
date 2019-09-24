@@ -183,13 +183,15 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin-top: 18px; }
   @media (min-width: 500px) {
     .form-container {
       width: 93%; } }
   @media (min-width: 750px) {
     .form-container {
-      width: 85%; } }
+      width: 85%;
+      margin-bottom: 10px; } }
   .form-container span {
     margin-right: 10px; }
     @media (min-width: 1000px) {
@@ -220,7 +222,7 @@ body {
       .form-container input {
         width: 200px;
         height: 150px;
-        font-size: 11rem; } }
+        font-size: 10rem; } }
   .form-container input::placeholder {
     color: rgba(169, 169, 169, 0.632); }
   .form-container .js-toggle-input {

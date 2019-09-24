@@ -181,6 +181,8 @@ form.addEventListener('submit', function(e){
   timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_2__["Timer"](usrInput)
   timer.start()
   toggleStartTimer.textContent = "stop"
+
+  inputs.forEach(input => input.blur())
 })
 
 // toggle buttons
