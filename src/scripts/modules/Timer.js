@@ -44,9 +44,8 @@ export function Timer(usrInput){
 
   let update = ()=>{
     if(this.isOn) {
-      timeFormatter()
-      initialcountDownMilliseconds = countDownMilliseconds
       remaining = countDownMilliseconds -= delta()
+      timeFormatter()
     }
   }
 
@@ -78,6 +77,7 @@ export function Timer(usrInput){
   let updateProgressBar = ()=>{
     if(this.isOn) {
       let progress = ((initialcountDownMilliseconds-remaining) / initialcountDownMilliseconds) * 100
+      // console.log(progress);
       let moveToRight = defaultTransform + progress 
       progressBarChild.style.transform = `translateX(${moveToRight}%)`
     }
