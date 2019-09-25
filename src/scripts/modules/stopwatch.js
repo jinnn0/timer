@@ -1,9 +1,6 @@
-export function Stopwatch(){
-  let millSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
-  let secondEl = document.querySelector('.stopwatch .js-second-num')
-  let minuteEl = document.querySelector('.stopwatch .js-minute-num')
-  let hourEl = document.querySelector('.stopwatch .js-hour-num')
+import * as htmlEls from './htmlElements'
 
+export function Stopwatch(){
   let interval 
   let time = 0
   let offSet
@@ -30,10 +27,10 @@ export function Stopwatch(){
     let minutes = time.getMinutes().toString()
     let hours = time.getUTCHours().toString()
     
-    millSecondEl.textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
-    secondEl.textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
-    minuteEl.textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
-    hourEl.textContent = (hours.length < 2) ? `0${hours}` : hours;
+    htmlEls.stopWatchMillSecondEl.textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
+    htmlEls.stopWatchSecondEl.textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
+    htmlEls.stopWatchMinuteEl.textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
+    htmlEls.stopWatchHourEl.textContent = (hours.length < 2) ? `0${hours}` : hours;
   }
 
 
@@ -60,9 +57,9 @@ export function Stopwatch(){
     clearInterval(interval)
     interval = null
 
-    millSecondEl.textContent = "00"
-    secondEl.textContent = "00"
-    minuteEl.textContent = "00"
-    hourEl.textContent = "00"
+    htmlEls.stopWatchMillSecondEl.textContent = "00"
+    htmlEls.stopWatchSecondEl.textContent = "00"
+    htmlEls.stopWatchMinuteEl.textContent = "00"
+    htmlEls.stopWatchHourEl.textContent = "00"
   }
 }

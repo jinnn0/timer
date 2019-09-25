@@ -12,24 +12,24 @@
     <div class="app stopwatch">
         <div class="record-container stopwatch">
             <div class="time-box">
-                <span class="time js-hour-num stopwatch">00</span>
+                <span class="time js-hour-num">00</span>
                 <span class="time-letter">h</span>
             </div>          
             <div class="time-box">
-                <span class="time js-minute-num stopwatch">00</span>
+                <span class="time js-minute-num">00</span>
                 <span class="time-letter">m</span> 
             </div>  
             <div class="time-box">
-                <span class="time js-second-num stopwatch">00</span>
+                <span class="time js-second-num">00</span>
                 <span class="time-letter">s</span>
             </div>
             <div class="time-box millsecond-container">
-                <span class="millsecond js-millsecond-num stopwatch">00</span>
+                <span class="millsecond js-millsecond-num">00</span>
             </div>
         </div>
 
         <div class="progress-bar js-progress-bar">
-            <div class="progress-bar-child"></div>
+            <div class="progress-bar-child js-progress-bar-child"></div>
         </div>
 
         <div class="buttons">
@@ -55,7 +55,7 @@
                 <input class="seconds" type="text" maxlength="2" placeholder="00"> 
                 <span>s</span>
                 <!-- An input type='submit' is needed, otherwise the form will never submit when Enter is hit.-->
-                <input type='submit' value='submit' style='display:none'/>
+                <input type='submit' value='submit'/>
             </form>
         </div>
 

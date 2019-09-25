@@ -2,15 +2,21 @@
   background-color: black;
   color: white;
 }
+.app {
+  .js-toggle-progress {
+    background-color: #ffffff;
+    // background-color: black;
+  }
 
-.app .js-toggle-progress {
-  background-color: #ffffff;
-}
-
-.js-toggle-btn {
-  color: white; 
-} 
-
-.js-toggle-input {
-  color: white;
+  .js-toggle-progress-timer {
+    background-color: black;
+  }
+  
+  .js-toggle-btn {
+    color: white; 
+  } 
+  
+  .js-toggle-input {
+    color: white;
+  } 
 }

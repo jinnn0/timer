@@ -1,16 +1,12 @@
+import * as htmlEls from './htmlElements'
+
 export function Timer(usrInput){
-  let secondEl = document.querySelector('.timer .seconds')
-  let minuteEl = document.querySelector('.timer .minutes')
-  let hourEl = document.querySelector('.timer .hours')
-  let progressBarChild = document.querySelector('.timer .js-progress-bar-timer-child')
- 
   let interval
   let offSet
   let remaining
   let seconds = (usrInput.seconds) * 1000
   let minutes = (usrInput.minutes) * 60000
   let hours = (usrInput.hours) * 3600000
-  let initialcountDownMilliseconds = seconds + minutes + hours
   let countDownMilliseconds = seconds + minutes + hours
 
   this.isOn = false
@@ -37,9 +33,11 @@ export function Timer(usrInput){
       interval = null 
       this.isOn = false
 
-      secondEl.value = "00"
-      minuteEl.value = "00"
-      hourEl.value = "00"
+      htmlEls.timerSecondEl.value = null
+      htmlEls.timerMinuteEl.value = null
+      htmlEls.timerHourEl.value = null
+
+      htmlEls.timerProgressBarChild.style.transform = "translateX(-100%)"
   }
 
   let update = ()=>{
@@ -64,22 +62,25 @@ export function Timer(usrInput){
     let formattedMinutes = Math.floor((countDownMilliseconds / (1000 * 60)) % 60).toString()
     let formattedHours = Math.floor((countDownMilliseconds / (1000 * 60 * 60)) % 24).toString()
     
-    secondEl.value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
-    minuteEl.value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
-    hourEl.value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
+    htmlEls.timerSecondEl.value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
+    htmlEls.timerMinuteEl.value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
+    htmlEls.timerHourEl.value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
 
     if(countDownMilliseconds < 0) {
-      this.reset()
+        this.stop()
+        htmlEls.timerSecondEl.value = "00"
+        htmlEls.timerMinuteEl.value = "00"
+        htmlEls.timerHourEl.value = "00"
     }
   }
 
   let defaultTransform = -100
   let updateProgressBar = ()=>{
     if(this.isOn) {
+      let initialcountDownMilliseconds = seconds + minutes + hours
       let progress = ((initialcountDownMilliseconds-remaining) / initialcountDownMilliseconds) * 100
-      // console.log(progress);
       let moveToRight = defaultTransform + progress 
-      progressBarChild.style.transform = `translateX(${moveToRight}%)`
+      htmlEls.timerProgressBarChild.style.transform = `translateX(${moveToRight}%)`
     }
   }
 } 

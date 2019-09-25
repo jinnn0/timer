@@ -95,66 +95,33 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_Stopwatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Stopwatch */ "./src/scripts/modules/Stopwatch.js");
-/* harmony import */ var _modules_Mode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Mode */ "./src/scripts/modules/Mode.js");
-/* harmony import */ var _modules_Timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Timer */ "./src/scripts/modules/Timer.js");
+/* harmony import */ var _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/htmlElements */ "./src/scripts/modules/htmlElements.js");
+/* harmony import */ var _modules_Stopwatch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Stopwatch */ "./src/scripts/modules/Stopwatch.js");
+/* harmony import */ var _modules_Mode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Mode */ "./src/scripts/modules/Mode.js");
+/* harmony import */ var _modules_Timer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/Timer */ "./src/scripts/modules/Timer.js");
+
 
 
 
      
-
-// toggle bewtween stopwatch and timer
-let toggleAppBtns = document.querySelectorAll('.js-toggle-app')
-let progressBarChildren = document.querySelectorAll('.progress-bar-child')
-let appStopwatch = document.querySelector('.app.stopwatch')
-let appTimer = document.querySelector('.app.timer')
-
-// stopwatch elements 
-let millSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
-let secondEl = document.querySelector('.stopwatch .js-second-num')
-let minuteEl = document.querySelector('.stopwatch .js-minute-num')
-let hourEl = document.querySelector('.stopwatch .js-hour-num')
-
-// timer elements 
-let form = document.querySelector('.form')
-let inputs = document.querySelectorAll('.form input[type="text"]')
-
-
-// startStop button, reset button
-let toggleStartBtns = document.querySelectorAll('.js-toggleStart')
-let toggleStartStopwatch = document.querySelector('.stopwatch .js-toggleStart')
-let toggleStartTimer = document.querySelector('.timer .js-toggleStart')
-let resetBtns = document.querySelectorAll('.reset')
-
-// progressbar
-let progressBarChild = document.querySelector('.progress-bar-child')
-
-// dark or white mode
-let body = document.querySelector('body')
-let progressBars = document.querySelectorAll('.js-progress-bar')
-let buttonContainers = document.querySelectorAll('.btn')
-let modeBtns = document.querySelectorAll('.mode')
-
 // Instances 
-let watch = new _modules_Stopwatch__WEBPACK_IMPORTED_MODULE_0__["Stopwatch"]()
-let mode = new _modules_Mode__WEBPACK_IMPORTED_MODULE_1__["Mode"](body, progressBars, inputs, buttonContainers, modeBtns)
+let isTimer = false
+let watch = new _modules_Stopwatch__WEBPACK_IMPORTED_MODULE_1__["Stopwatch"]()
+let mode = new _modules_Mode__WEBPACK_IMPORTED_MODULE_2__["Mode"]()
 let timer
 
-let isTimer = false
 
-
-for(let i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener('input', function(e){
-    if(this.value.length == 2) {
-      //move to the next input, if any
-      let nextNext = this.nextElementSibling.nextElementSibling
-      if(nextNext && nextNext.type == 'text') {
-        this.blur()
-        nextNext.focus()
-      }
+for(let i = 0; i < _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"].length; i++) {
+  _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"][i].addEventListener('input', function(e){
+      if(this.value.length == 2) {
+        let nextNext = this.nextElementSibling.nextElementSibling
+        if(nextNext && nextNext.type == 'text') {
+          this.blur()
+          nextNext.focus()
+        }
     }
 
-    else if (this.value.length == 0 ) {
+    else if (this.value.length == 0) {
       let previous = this.previousElementSibling
       if(!previous){
         return;
@@ -164,29 +131,31 @@ for(let i = 0; i < inputs.length; i++) {
         this.blur()
         previousPrevious.focus()
       }
-    }
+      } 
   })
 }
 
-form.addEventListener('submit', function(e){
+
+
+_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerForm"].addEventListener('submit', function(e){
   e.preventDefault();
   let usrInput
-  for(let i = 0; i < inputs.length; i++){
+  for(let i = 0; i < _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"].length; i++){
     usrInput = {
-      hours: inputs[0].value,
-      minutes: inputs[1].value,
-      seconds: inputs[2].value
+      hours: _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"][0].value,
+      minutes: _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"][1].value,
+      seconds: _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"][2].value
     }
   }
-  timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_2__["Timer"](usrInput)
+  timer = new _modules_Timer__WEBPACK_IMPORTED_MODULE_3__["Timer"](usrInput)
   timer.start()
-  toggleStartTimer.textContent = "stop"
+  _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartTimer"].textContent = "stop"
 
-  inputs.forEach(input => input.blur())
+  _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"].forEach(input => input.blur())
 })
 
 // toggle buttons
-toggleStartBtns.forEach(toggleStartBtn =>
+_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartBtns"].forEach(toggleStartBtn =>
   toggleStartBtn.addEventListener('click', function(){
     if(!isTimer){
       (!watch.isOn) ? start() : stop()
@@ -200,62 +169,64 @@ toggleStartBtns.forEach(toggleStartBtn =>
 function start(){
   if(!isTimer) {
     watch.start()
-    toggleStartStopwatch.textContent = "stop"
+    _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartStopwatch"].textContent = "stop"
   } else {
     timer.start()
-    toggleStartTimer.textContent = "stop"
+    _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartTimer"].textContent = "stop"
   }
 }
 
 function stop(){
   if(!isTimer) {
     watch.stop()
-    toggleStartStopwatch.textContent = "start"
+    _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartStopwatch"].textContent = "start"
   } else { 
     timer.stop()
-    toggleStartTimer.textContent = "start"
+    _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartTimer"].textContent = "start"
   }
 }
 
 
-resetBtns.forEach(resetBtn => 
+_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["resetBtns"].forEach(resetBtn => 
   resetBtn.addEventListener('click', () => {
       if(!isTimer) {
       watch.reset()
-      toggleStartStopwatch.textContent = "start"
+      _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartStopwatch"].textContent = "start"
     } else {
       timer.reset()
-      toggleStartTimer.textContent = "start"
+      _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleStartTimer"].textContent = "start"
     }
   })
 )
 
 
-modeBtns.forEach(modeBtn =>
+_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["modeBtns"].forEach(modeBtn =>
   modeBtn.addEventListener('click', () => {
     mode.change()
     })
 )
 
-toggleAppBtns.forEach(toggleAppBtn => 
+_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleAppBtns"].forEach(toggleAppBtn => 
   toggleAppBtn.addEventListener('click', () => {
       if(!isTimer) {
-        toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "stopwatch")
-        appTimer.style.display = "flex"
-        appStopwatch.style.display = "none"
-        progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
-        setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+        _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleAppBtns"].forEach(toggleAppBtn => toggleAppBtn.textContent = "stopwatch")
+        _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["appTimer"].style.display = "flex"
+        _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["appStopwatch"].style.display = "none"
+        _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["progressBarChildren"].forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+        setTimeout(() => {_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["progressBarChildren"].forEach(a => a.style.animation = null)}, 500);
         isTimer = true
       } else {
-          toggleAppBtns.forEach(toggleAppBtn => toggleAppBtn.textContent = "timer")
-          appTimer.style.display = "none"
-          appStopwatch.style.display = "flex"
-          progressBarChildren.forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
-          setTimeout(() => {progressBarChildren.forEach(a => a.style.animation = null)}, 500);
+          _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["toggleAppBtns"].forEach(toggleAppBtn => toggleAppBtn.textContent = "timer")
+          _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["appTimer"].style.display = "none"
+          _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["appStopwatch"].style.display = "flex"
+          _modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["progressBarChildren"].forEach(a => a.style.animation = "progressBar .7s ease-in-out forwards")
+          setTimeout(() => {_modules_htmlElements__WEBPACK_IMPORTED_MODULE_0__["progressBarChildren"].forEach(a => a.style.animation = null)}, 500);
           isTimer = false
         }
     })
   ) 
+
+
 
 
 /***/ }),
@@ -270,23 +241,26 @@ toggleAppBtns.forEach(toggleAppBtn =>
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Mode", function() { return Mode; });
-function Mode(body, progressBars, inputs, buttonContainers, modeBtns){
+/* harmony import */ var _htmlElements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./htmlElements */ "./src/scripts/modules/htmlElements.js");
+
+
+function Mode(){
   this.isDark = false
-  
+   
   this.change = () => {
     if(!this.isDark) {
-      body.classList.add('js-toggle-body')
-      progressBars.forEach(bar => bar.classList.add('js-toggle-progress'))
-      inputs.forEach(input => input.classList.add('js-toggle-input'))
-      buttonContainers.forEach(btn => btn.classList.add('js-toggle-btn'))
-      modeBtns.forEach(modeBtn => modeBtn.textContent = "white mode")
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["body"].classList.add('js-toggle-body')
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["progressBars"].forEach(bar => bar.classList.add('js-toggle-progress'))
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"].forEach(input => input.classList.add('js-toggle-input'))
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["buttonContainers"].forEach(btn => btn.classList.add('js-toggle-btn'))
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["modeBtns"].forEach(modeBtn => modeBtn.textContent = "white mode")
       this.isDark = true
     } else {
-        body.classList.remove('js-toggle-body')
-        progressBars.forEach(bar => bar.classList.remove('js-toggle-progress'))
-        inputs.forEach(input => input.classList.remove('js-toggle-input'))
-        buttonContainers.forEach(btn => btn.classList.remove('js-toggle-btn'))
-        modeBtns.forEach(modeBtn => modeBtn.textContent = "dark mode")
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["body"].classList.remove('js-toggle-body')
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["progressBars"].forEach(bar => bar.classList.remove('js-toggle-progress'))
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerInputs"].forEach(input => input.classList.remove('js-toggle-input'))
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["buttonContainers"].forEach(btn => btn.classList.remove('js-toggle-btn'))
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["modeBtns"].forEach(modeBtn => modeBtn.textContent = "dark mode")
         this.isDark = false
     }
   }
@@ -305,12 +279,10 @@ function Mode(body, progressBars, inputs, buttonContainers, modeBtns){
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Stopwatch", function() { return Stopwatch; });
-function Stopwatch(){
-  let millSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
-  let secondEl = document.querySelector('.stopwatch .js-second-num')
-  let minuteEl = document.querySelector('.stopwatch .js-minute-num')
-  let hourEl = document.querySelector('.stopwatch .js-hour-num')
+/* harmony import */ var _htmlElements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./htmlElements */ "./src/scripts/modules/htmlElements.js");
 
+
+function Stopwatch(){
   let interval 
   let time = 0
   let offSet
@@ -337,10 +309,10 @@ function Stopwatch(){
     let minutes = time.getMinutes().toString()
     let hours = time.getUTCHours().toString()
     
-    millSecondEl.textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
-    secondEl.textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
-    minuteEl.textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
-    hourEl.textContent = (hours.length < 2) ? `0${hours}` : hours;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchMillSecondEl"].textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchSecondEl"].textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchMinuteEl"].textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchHourEl"].textContent = (hours.length < 2) ? `0${hours}` : hours;
   }
 
 
@@ -367,10 +339,10 @@ function Stopwatch(){
     clearInterval(interval)
     interval = null
 
-    millSecondEl.textContent = "00"
-    secondEl.textContent = "00"
-    minuteEl.textContent = "00"
-    hourEl.textContent = "00"
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchMillSecondEl"].textContent = "00"
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchSecondEl"].textContent = "00"
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchMinuteEl"].textContent = "00"
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["stopWatchHourEl"].textContent = "00"
   }
 }
 
@@ -386,19 +358,16 @@ function Stopwatch(){
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Timer", function() { return Timer; });
+/* harmony import */ var _htmlElements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./htmlElements */ "./src/scripts/modules/htmlElements.js");
+
+
 function Timer(usrInput){
-  let secondEl = document.querySelector('.timer .seconds')
-  let minuteEl = document.querySelector('.timer .minutes')
-  let hourEl = document.querySelector('.timer .hours')
-  let progressBarChild = document.querySelector('.timer .js-progress-bar-timer-child')
- 
   let interval
   let offSet
   let remaining
   let seconds = (usrInput.seconds) * 1000
   let minutes = (usrInput.minutes) * 60000
   let hours = (usrInput.hours) * 3600000
-  let initialcountDownMilliseconds = seconds + minutes + hours
   let countDownMilliseconds = seconds + minutes + hours
 
   this.isOn = false
@@ -425,9 +394,11 @@ function Timer(usrInput){
       interval = null 
       this.isOn = false
 
-      secondEl.value = "00"
-      minuteEl.value = "00"
-      hourEl.value = "00"
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerSecondEl"].value = null
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerMinuteEl"].value = null
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerHourEl"].value = null
+
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerProgressBarChild"].style.transform = "translateX(-100%)"
   }
 
   let update = ()=>{
@@ -452,26 +423,97 @@ function Timer(usrInput){
     let formattedMinutes = Math.floor((countDownMilliseconds / (1000 * 60)) % 60).toString()
     let formattedHours = Math.floor((countDownMilliseconds / (1000 * 60 * 60)) % 24).toString()
     
-    secondEl.value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
-    minuteEl.value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
-    hourEl.value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerSecondEl"].value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerMinuteEl"].value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
+    _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerHourEl"].value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
 
     if(countDownMilliseconds < 0) {
-      this.reset()
+        this.stop()
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerSecondEl"].value = "00"
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerMinuteEl"].value = "00"
+        _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerHourEl"].value = "00"
     }
   }
 
   let defaultTransform = -100
   let updateProgressBar = ()=>{
     if(this.isOn) {
+      let initialcountDownMilliseconds = seconds + minutes + hours
       let progress = ((initialcountDownMilliseconds-remaining) / initialcountDownMilliseconds) * 100
-      // console.log(progress);
       let moveToRight = defaultTransform + progress 
-      progressBarChild.style.transform = `translateX(${moveToRight}%)`
+      _htmlElements__WEBPACK_IMPORTED_MODULE_0__["timerProgressBarChild"].style.transform = `translateX(${moveToRight}%)`
     }
   }
 } 
 
+
+/***/ }),
+
+/***/ "./src/scripts/modules/htmlElements.js":
+/*!*********************************************!*\
+  !*** ./src/scripts/modules/htmlElements.js ***!
+  \*********************************************/
+/*! exports provided: toggleAppBtns, progressBarChildren, appStopwatch, appTimer, stopWatchMillSecondEl, stopWatchSecondEl, stopWatchMinuteEl, stopWatchHourEl, timerForm, timerInputs, timerSecondEl, timerMinuteEl, timerHourEl, timerProgressBarChild, toggleStartBtns, toggleStartStopwatch, toggleStartTimer, resetBtns, body, progressBars, buttonContainers, modeBtns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleAppBtns", function() { return toggleAppBtns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "progressBarChildren", function() { return progressBarChildren; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appStopwatch", function() { return appStopwatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appTimer", function() { return appTimer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopWatchMillSecondEl", function() { return stopWatchMillSecondEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopWatchSecondEl", function() { return stopWatchSecondEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopWatchMinuteEl", function() { return stopWatchMinuteEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopWatchHourEl", function() { return stopWatchHourEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerForm", function() { return timerForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerInputs", function() { return timerInputs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerSecondEl", function() { return timerSecondEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerMinuteEl", function() { return timerMinuteEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerHourEl", function() { return timerHourEl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timerProgressBarChild", function() { return timerProgressBarChild; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleStartBtns", function() { return toggleStartBtns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleStartStopwatch", function() { return toggleStartStopwatch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleStartTimer", function() { return toggleStartTimer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetBtns", function() { return resetBtns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "body", function() { return body; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "progressBars", function() { return progressBars; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buttonContainers", function() { return buttonContainers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modeBtns", function() { return modeBtns; });
+// toggle bewtween stopwatch and timer
+let toggleAppBtns = document.querySelectorAll('.js-toggle-app')
+let progressBarChildren = document.querySelectorAll('.progress-bar-child')
+let appStopwatch = document.querySelector('.app.stopwatch')
+let appTimer = document.querySelector('.app.timer')
+
+
+// stopwatch elements 
+let stopWatchMillSecondEl = document.querySelector('.stopwatch .js-millsecond-num')
+let stopWatchSecondEl = document.querySelector('.stopwatch .js-second-num')
+let stopWatchMinuteEl = document.querySelector('.stopwatch .js-minute-num')
+let stopWatchHourEl = document.querySelector('.stopwatch .js-hour-num')
+
+
+// timer elements 
+let timerForm = document.querySelector('.form')
+let timerInputs = document.querySelectorAll('.form input[type="text"]')
+let timerSecondEl = document.querySelector('.timer .seconds')
+let timerMinuteEl = document.querySelector('.timer .minutes')
+let timerHourEl = document.querySelector('.timer .hours')
+let timerProgressBarChild = document.querySelector('.timer .js-progress-bar-timer-child')
+
+
+// startStop button, reset button
+let toggleStartBtns = document.querySelectorAll('.js-toggleStart')
+let toggleStartStopwatch = document.querySelector('.stopwatch .js-toggleStart')
+let toggleStartTimer = document.querySelector('.timer .js-toggleStart')
+let resetBtns = document.querySelectorAll('.reset')
+
+// dark or white mode
+let body = document.querySelector('body')
+let progressBars = document.querySelectorAll('.js-progress-bar')
+let buttonContainers = document.querySelectorAll('.btn')
+let modeBtns = document.querySelectorAll('.mode')
 
 /***/ })
 
