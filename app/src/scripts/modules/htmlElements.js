@@ -26,9 +26,9 @@ export let toggleStartBtns = document.querySelectorAll('.js-toggleStart')
 export let toggleStartStopwatch = document.querySelector('.stopwatch .js-toggleStart')
 export let toggleStartTimer = document.querySelector('.timer .js-toggleStart')
 export let resetBtns = document.querySelectorAll('.reset')
-
+ 
 // dark or white mode
 export let body = document.querySelector('body')
 export let progressBars = document.querySelectorAll('.js-progress-bar')
 export let buttonContainers = document.querySelectorAll('.btn')
-export let modeBtns = document.querySelectorAll('.mode')
+export let modeBtns = document.querySelectorAll('.mode') 

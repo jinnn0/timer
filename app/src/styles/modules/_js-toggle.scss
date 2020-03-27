@@ -1,22 +1,25 @@
 .js-toggle-body {
-  background-color: black;
-  color: white;
+  background-color: rgba(19, 19, 19, 0.947);
+  color: white
 }
 .app {
   .js-toggle-progress {
     background-color: #ffffff;
-    // background-color: black;
-  }
+    // background: rgb(174, 174, 174);
+
+  }  
 
   .js-toggle-progress-timer {
     background-color: black;
-  }
+  } 
   
   .js-toggle-btn {
     color: white; 
-  } 
+    // color: rgb(177, 177, 177);
+  }  
   
   .js-toggle-input {
     color: white;
+    // color: rgb(225, 225, 225);
   } 
 }

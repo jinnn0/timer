@@ -2,7 +2,7 @@ import * as htmlEls from './htmlElements'
 
 export function Mode(){
   this.isDark = false
-   
+    
   this.change = () => {
     if(!this.isDark) {
       htmlEls.body.classList.add('js-toggle-body')

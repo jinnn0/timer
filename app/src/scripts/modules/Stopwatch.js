@@ -8,7 +8,7 @@ export function Stopwatch(){
   function update(){ 
     if(this.isOn){
       time += delta()
-    }
+    } 
 
     timeFormatter(time)
   }

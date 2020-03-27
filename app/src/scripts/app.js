@@ -1,14 +1,18 @@
+import "../styles/style.scss"
+
 import * as htmlEls from './modules/htmlElements'
 import {Stopwatch} from './modules/Stopwatch'
 import {Mode} from './modules/Mode'
 import {Timer} from './modules/Timer'
-     
-// Instances 
-let isTimer = false
+
+// Instances    
+let isTimer = false   
 let watch = new Stopwatch()
-let mode = new Mode()
+let mode = new Mode() 
 let timer
 
+let helloThere = 3
+console.log(helloThere);
 
 for(let i = 0; i < htmlEls.timerInputs.length; i++) {
   htmlEls.timerInputs[i].addEventListener('input', function(e){
@@ -18,7 +22,7 @@ for(let i = 0; i < htmlEls.timerInputs.length; i++) {
           this.blur()
           nextNext.focus()
         }
-    }
+    } 
 
     else if (this.value.length == 0) {
       let previous = this.previousElementSibling

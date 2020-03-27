@@ -1,0 +1,45 @@
+.timer .form-container,
+.timer .form,
+.timer input,
+.timer span {
+  // border: 1px solid black !important;
+}
+
+
+.timer {
+  display: none;
+ 
+        .form-container {
+          text-align: center;
+
+                  span {
+                    margin-right: 10px;
+            
+                    @include atLarge {
+                      font-size: 2rem;
+                      margin-right: 25px;
+                    }
+                  } 
+
+                  span:nth-of-type(3){
+                    margin-right: 0;
+                  } 
+             
+                  input {
+                    text-align: center;
+                    letter-spacing: 1px;
+                    outline: none;
+                    border: none; 
+                    background-color: transparent;
+                    width: 23.2%;
+                  }
+
+                  input[type="submit"]{
+                    display: none;
+                  }
+            
+                  input::placeholder {
+                    color: rgba(169, 169, 169, 0.632);
+                  }
+           }
+}
