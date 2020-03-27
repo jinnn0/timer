@@ -6,14 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
-class RunAfterCompile { 
-  apply(compiler){
-    compiler.hooks.done.tap('Copy images', function(){
-      fse.copySync('./app/src/images', './docs/src/images')
-    })
-  }   
-} 
-   
 let cssConfig = { 
   test: /\.scss$/i,  
   use: [
@@ -56,9 +48,9 @@ if(currentTask == 'dev'){
     }   
     
     config.devServer = {      
-      // before: function(app, server){
-      //   server._watch('./app/**/*.html')  
-      // },
+      before: function(app, server){
+        server._watch('./app/**/*.html')  
+      },
       contentBase: path.join(__dirname, 'app'),
       hot: true,   
       port: 3000,   
@@ -110,7 +102,6 @@ if(currentTask == 'build'){
     config.plugins.push(
         new CleanWebpackPlugin(), 
         new MiniCssExtractPlugin({filename:'styles.[chunkhash].css' }),
-        new RunAfterCompile()
         )
 }    
 
