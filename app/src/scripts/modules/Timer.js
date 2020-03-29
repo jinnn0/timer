@@ -1,6 +1,6 @@
-import * as htmlEls from './htmlElements'
+import * as htmlElements from './htmlElements'
 
-export function Timer(usrInput){
+function Timer(usrInput){
   let interval
   let offSet
   let remaining
@@ -9,16 +9,17 @@ export function Timer(usrInput){
   let hours = (usrInput.hours) * 3600000
   let countDownMilliseconds = seconds + minutes + hours
 
-  this.isOn = false
-
-  this.start = function(){
+  this.isOn = false 
+  this.isFinished = false
+  
+  this.start = function(){ 
     if(!this.isOn){
       interval = setInterval(update.bind(this), 1000)
       this.isOn = true
       offSet = Date.now()
-    }
+    }  
   }
-
+ 
   this.stop = function(){
     if(this.isOn){
       clearInterval(interval)
@@ -33,11 +34,11 @@ export function Timer(usrInput){
       interval = null 
       this.isOn = false
 
-      htmlEls.timerSecondEl.value = null
-      htmlEls.timerMinuteEl.value = null
-      htmlEls.timerHourEl.value = null
+      htmlElements.timerSecondEl.value = null
+      htmlElements.timerMinuteEl.value = null
+      htmlElements.timerHourEl.value = null
 
-      htmlEls.timerProgressBarChild.style.transform = "translateX(-100%)"
+      htmlElements.timerProgressBarChild.style.transform = "translateX(-100%)"
   }
 
   let update = ()=>{
@@ -62,15 +63,15 @@ export function Timer(usrInput){
     let formattedMinutes = Math.floor((countDownMilliseconds / (1000 * 60)) % 60).toString()
     let formattedHours = Math.floor((countDownMilliseconds / (1000 * 60 * 60)) % 24).toString()
     
-    htmlEls.timerSecondEl.value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
-    htmlEls.timerMinuteEl.value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
-    htmlEls.timerHourEl.value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
+    htmlElements.timerSecondEl.value = (formattedSeconds.length < 2) ? `0${formattedSeconds}` : formattedSeconds;
+    htmlElements.timerMinuteEl.value = (formattedMinutes.length < 2) ? `0${formattedMinutes}` : formattedMinutes;
+    htmlElements.timerHourEl.value = (formattedHours.length < 2) ? `0${formattedHours}` : formattedHours;
 
     if(countDownMilliseconds < 0) {
         this.stop()
-        htmlEls.timerSecondEl.value = "00"
-        htmlEls.timerMinuteEl.value = "00"
-        htmlEls.timerHourEl.value = "00"
+        htmlElements.timerSecondEl.value = "00"
+        htmlElements.timerMinuteEl.value = "00"
+        htmlElements.timerHourEl.value = "00"
     }
   }
 
@@ -80,7 +81,9 @@ export function Timer(usrInput){
       let initialcountDownMilliseconds = seconds + minutes + hours
       let progress = ((initialcountDownMilliseconds-remaining) / initialcountDownMilliseconds) * 100
       let moveToRight = defaultTransform + progress 
-      htmlEls.timerProgressBarChild.style.transform = `translateX(${moveToRight}%)`
+      htmlElements.timerProgressBarChild.style.transform = `translateX(${moveToRight}%)`
     }
   }
 } 
+
+export default Timer

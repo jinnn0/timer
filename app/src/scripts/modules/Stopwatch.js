@@ -1,11 +1,11 @@
-import * as htmlEls from './htmlElements'
+import * as htmlElements from './htmlElements'
 
-export function Stopwatch(){
+function Stopwatch(){
   let interval 
   let time = 0
   let offSet
  
-  function update(){ 
+  function update(){  
     if(this.isOn){
       time += delta()
     } 
@@ -27,10 +27,10 @@ export function Stopwatch(){
     let minutes = time.getMinutes().toString()
     let hours = time.getUTCHours().toString()
     
-    htmlEls.stopWatchMillSecondEl.textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
-    htmlEls.stopWatchSecondEl.textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
-    htmlEls.stopWatchMinuteEl.textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
-    htmlEls.stopWatchHourEl.textContent = (hours.length < 2) ? `0${hours}` : hours;
+    htmlElements.stopWatchMillSecondEl.textContent = (millSeconds.length < 2) ? `0${millSeconds}` : millSeconds;
+    htmlElements.stopWatchSecondEl.textContent = (seconds.length < 2) ? `0${seconds}` : seconds;
+    htmlElements.stopWatchMinuteEl.textContent = (minutes.length < 2) ? `0${minutes}` : minutes;
+    htmlElements.stopWatchHourEl.textContent = (hours.length < 2) ? `0${hours}` : hours;
   }
 
 
@@ -56,10 +56,13 @@ export function Stopwatch(){
     time = 0
     clearInterval(interval)
     interval = null
+    this.isOn = false
 
-    htmlEls.stopWatchMillSecondEl.textContent = "00"
-    htmlEls.stopWatchSecondEl.textContent = "00"
-    htmlEls.stopWatchMinuteEl.textContent = "00"
-    htmlEls.stopWatchHourEl.textContent = "00"
+    htmlElements.stopWatchMillSecondEl.textContent = "00"
+    htmlElements.stopWatchSecondEl.textContent = "00"
+    htmlElements.stopWatchMinuteEl.textContent = "00"
+    htmlElements.stopWatchHourEl.textContent = "00"
   }
 }
+
+export default Stopwatch

@@ -2,16 +2,16 @@
 .timer .form,
 .timer input,
 .timer span {
-  // border: 1px solid black !important;
+  // border: 1px solid black;
 }
 
-
+ 
 .timer {
   display: none;
- 
+  
         .form-container {
           text-align: center;
-
+  
                   span {
                     margin-right: 10px;
             
@@ -34,12 +34,30 @@
                     width: 23.2%;
                   }
 
-                  input[type="submit"]{
+                  input[type="submit"]{ 
                     display: none;
                   }
-            
+
+                  .btn.sm { 
+                    width: 83px;
+                    margin-right: 10px;
+                  }
+
                   input::placeholder {
                     color: rgba(169, 169, 169, 0.632);
                   }
-           }
+
+
+                  .button-hidden {
+                    display: none;
+                  }
+                } 
+
+                #generic-start-button {
+                  display: none;
+                }
+
+                #input-submit-label {
+                  padding-left: 17px;
+                }
 }
