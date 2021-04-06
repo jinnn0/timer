@@ -37,13 +37,29 @@
       display: none;
     }
 
-    .btn.sm {
-      width: 83px;
-      margin-right: 10px;
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
     }
 
     input::placeholder {
       color: rgba(169, 169, 169, 0.632);
+    }
+
+    button[type='submit'] {
+      opacity: 0;
+    }
+
+    .btn.sm {
+      width: 83px;
+      margin-right: 10px;
     }
 
     .button-hidden {

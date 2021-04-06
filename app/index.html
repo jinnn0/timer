@@ -47,11 +47,32 @@
     <div class="app timer">
       <div class="form-container">
         <form class="form" action="" method="POST">
-          <input class="hours" type="text" maxlength="2" placeholder="00" />
+          <input
+            class="hours"
+            type="number"
+            maxlength="2"
+            placeholder="00"
+            onkeydown="javascript: return event.keyCode === 8 ||
+            event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+          />
           <span>h</span>
-          <input class="minutes" type="text" maxlength="2" placeholder="00" />
+          <input
+            class="minutes"
+            type="number"
+            maxlength="2"
+            placeholder="00"
+            onkeydown="javascript: return event.keyCode === 8 ||
+            event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+          />
           <span>m</span>
-          <input class="seconds" type="text" maxlength="2" placeholder="00" />
+          <input
+            class="seconds"
+            type="number"
+            maxlength="2"
+            placeholder="00"
+            onkeydown="javascript: return event.keyCode === 8 ||
+            event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+          />
           <span>s</span>
           <!-- A button type='submit' is needed, otherwise the form will never submit when Enter is hit.-->
           <button type="submit" value="submit" placeholder="submit" id="submit-form" />

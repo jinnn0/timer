@@ -10,21 +10,19 @@ function runTimer() {
   for (let i = 0; i < htmlElements.timerInputs.length; i++) {
     htmlElements.timerInputs[i].addEventListener('input', function (e) {
       if (this.value.length == 2) {
-        let nextNext = this.nextElementSibling.nextElementSibling;
-        if (nextNext && nextNext.type == 'text') {
-          this.blur();
-          nextNext.focus();
-        }
+        let nextInput = this.nextElementSibling.nextElementSibling;
+
+        this.blur();
+        nextInput.focus();
       } else if (this.value.length == 0) {
         let previous = this.previousElementSibling;
         if (!previous) {
           return;
         }
+
         let previousPrevious = this.previousElementSibling.previousElementSibling;
-        if (previousPrevious && previousPrevious.type == 'text') {
-          this.blur();
-          previousPrevious.focus();
-        }
+        this.blur();
+        previousPrevious.focus();
       }
     });
   }

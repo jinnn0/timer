@@ -14,7 +14,7 @@ export let resetStopwatch = document.querySelector('.stopwatch .reset');
 
 // timer elements
 export let timerForm = document.querySelector('.form');
-export let timerInputs = document.querySelectorAll('.form input[type="text"]');
+export let timerInputs = document.querySelectorAll('.form input[type="number"]');
 export let timerSecondEl = document.querySelector('.timer .seconds');
 export let timerMinuteEl = document.querySelector('.timer .minutes');
 export let timerHourEl = document.querySelector('.timer .hours');
