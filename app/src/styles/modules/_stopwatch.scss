@@ -7,42 +7,42 @@
 .stopwatch {
   display: flex;
 
-          .record-container {             
-                    .millsecond-container {
-                      align-self: flex-end;
-                      margin-bottom: 8px;  
-                      width: 20px;
+  .record-container {
+    .millsecond-container {
+      align-self: flex-end;
+      margin-bottom: 8px;
+      width: 20px;
 
-                      @include atSmall {
-                        margin-bottom: 12px; 
-                      }
-                      @include atMedium {
-                        margin-bottom: 17px; 
-                        width: 35px;
-                      }
-                      @include atLarge {
-                        margin-bottom: 28px; 
-                      }
-                  }
+      @include atSmall {
+        margin-bottom: 12px;
+      }
+      @include atMedium {
+        margin-bottom: 17px;
+        width: 35px;
+      }
+      @include atLarge {
+        margin-bottom: 28px;
+      }
+    }
 
-                    .millsecond {
-                      font-size: 1rem;
-                      width: auto;
+    .millsecond {
+      font-size: 1rem;
+      width: auto;
 
-                      @include atMedium {
-                        font-size: 2rem;
-                      }
-                    }
+      @include atMedium {
+        font-size: 2rem;
+      }
+    }
 
-                    .time-letter {
-                      font-size: 1.5rem;
+    .time-letter {
+      font-size: 1.5rem;
 
-                      @include atMedium {
-                        font-size: 2rem;
-                      }
-                      @include atLarge {
-                        font-size: 3rem;
-                      }
-                    }
-          }
+      @include atMedium {
+        font-size: 2rem;
+      }
+      @include atLarge {
+        font-size: 3rem;
+      }
+    }
+  }
 }

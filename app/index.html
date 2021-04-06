@@ -1,81 +1,80 @@
-<!DOCTYPE html> 
-<html lang="en">    
-<head>   
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Timer</title>
-</head>   
-<body>
-<!-- stopwatch app -->  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Timer</title>
+  </head>
+  <body>
+    <!-- stopwatch app -->
     <div class="app stopwatch">
-        <div class="record-container stopwatch">
-            <div class="time-box"> 
-                <span class="time js-hour-num">00</span>
-                <span class="time-letter">h</span>
-            </div>          
-            <div class="time-box">
-                <span class="time js-minute-num">00</span>
-                <span class="time-letter">m</span> 
-            </div>  
-            <div class="time-box">
-                <span class="time js-second-num">00</span>
-                <span class="time-letter">s</span>
-            </div>
-            <div class="time-box millsecond-container">
-                <span class="millsecond js-millsecond-num">00</span>
-            </div>
+      <div class="record-container stopwatch">
+        <div class="time-box">
+          <span class="time js-hour-num">00</span>
+          <span class="time-letter">h</span>
         </div>
+        <div class="time-box">
+          <span class="time js-minute-num">00</span>
+          <span class="time-letter">m</span>
+        </div>
+        <div class="time-box">
+          <span class="time js-second-num">00</span>
+          <span class="time-letter">s</span>
+        </div>
+        <div class="time-box millsecond-container">
+          <span class="millsecond js-millsecond-num">00</span>
+        </div>
+      </div>
 
-        <div class="progress-bar js-progress-bar">
-            <div class="progress-bar-child js-progress-bar-child"></div>
-        </div>
+      <div class="progress-bar js-progress-bar">
+        <div class="progress-bar-child js-progress-bar-child"></div>
+      </div>
 
-        <div class="buttons">
-            <div class="functions">
-                <button class="btn sm js-toggleStart">start</button>
-                <button class="btn sm reset">reset</button>
-            </div>    
-            <div class="options">
-                <button class="btn lg mode">dark mode</button>
-                <button class="btn lg js-toggle-app">timer</button>
-            </div>          
+      <div class="buttons">
+        <div class="functions">
+          <button class="btn sm js-toggleStart">start</button>
+          <button class="btn sm reset">reset</button>
         </div>
+        <div class="options">
+          <button class="btn lg mode">dark mode</button>
+          <button class="btn lg js-toggle-app">timer</button>
+        </div>
+      </div>
     </div>
 
-<!-- timer app -->
-    <div class="app timer"> 
-        <div class="form-container">
-            <form class="form" action="" method="POST"> 
-                <input class="hours" type="text" maxlength="2" placeholder="00">
-                <span>h</span>
-                <input class="minutes" type="text" maxlength="2" placeholder="00">
-                <span>m</span>
-                <input class="seconds" type="text" maxlength="2" placeholder="00"> 
-                <span>s</span>
-                <!-- An input type='submit' is needed, otherwise the form will never submit when Enter is hit.-->
-                <input type='submit' value='submit' placeholder="submit" id="submit-form"/>
-            </form> 
-        </div>     
- 
-        <div class="progress-bar js-progress-bar js-progress-bar-timer">
-            <div class="progress-bar-child js-progress-bar-timer-child"></div>
-        </div>        
-   
-        <div class="buttons">   
-            <div class="functions">
-                <label for="submit-form" class="btn sm js-toggleStart" id="input-submit-label">start</label>
-                <button class="btn sm js-toggleStart" id="generic-start-button">start</button>
-                <button class="btn sm reset">reset</button> 
-            </div>      
-            <div class="options">  
-                <button class="btn lg mode">dark mode</button> 
-                <button class="btn lg js-toggle-app">timer</button>
-            </div>           
-        </div>   
-      
-    </div> 
- 
-  <script src="./bundled.js"></script>
-</body>
-</html> 
+    <!-- timer app -->
+    <div class="app timer">
+      <div class="form-container">
+        <form class="form" action="" method="POST">
+          <input class="hours" type="text" maxlength="2" placeholder="00" />
+          <span>h</span>
+          <input class="minutes" type="text" maxlength="2" placeholder="00" />
+          <span>m</span>
+          <input class="seconds" type="text" maxlength="2" placeholder="00" />
+          <span>s</span>
+          <!-- An input type='submit' is needed, otherwise the form will never submit when Enter is hit.-->
+          <input type="submit" value="submit" placeholder="submit" id="submit-form" />
+        </form>
+      </div>
+
+      <div class="progress-bar js-progress-bar js-progress-bar-timer">
+        <div class="progress-bar-child js-progress-bar-timer-child"></div>
+      </div>
+
+      <div class="buttons">
+        <div class="functions">
+          <label for="submit-form" class="btn sm js-toggleStart" id="input-submit-label">start</label>
+          <button class="btn sm js-toggleStart" id="generic-start-button">start</button>
+          <button class="btn sm reset">reset</button>
+        </div>
+        <div class="options">
+          <button class="btn lg mode">dark mode</button>
+          <button class="btn lg js-toggle-app">timer</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./bundled.js"></script>
+  </body>
+</html>

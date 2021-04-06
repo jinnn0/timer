@@ -5,59 +5,57 @@
   // border: 1px solid black;
 }
 
- 
 .timer {
   display: none;
-  
-        .form-container {
-          text-align: center;
-  
-                  span {
-                    margin-right: 10px;
-            
-                    @include atLarge {
-                      font-size: 2rem;
-                      margin-right: 25px;
-                    }
-                  } 
 
-                  span:nth-of-type(3){
-                    margin-right: 0;
-                  } 
-             
-                  input {
-                    text-align: center;
-                    letter-spacing: 1px;
-                    outline: none;
-                    border: none; 
-                    background-color: transparent;
-                    width: 23.2%;
-                  }
+  .form-container {
+    text-align: center;
 
-                  input[type="submit"]{ 
-                    display: none;
-                  }
+    span {
+      margin-right: 10px;
 
-                  .btn.sm { 
-                    width: 83px;
-                    margin-right: 10px;
-                  }
+      @include atLarge {
+        font-size: 2rem;
+        margin-right: 25px;
+      }
+    }
 
-                  input::placeholder {
-                    color: rgba(169, 169, 169, 0.632);
-                  }
+    span:nth-of-type(3) {
+      margin-right: 0;
+    }
 
+    input {
+      text-align: center;
+      letter-spacing: 1px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      width: 23.2%;
+    }
 
-                  .button-hidden {
-                    display: none;
-                  }
-                } 
+    input[type='submit'] {
+      display: none;
+    }
 
-                #generic-start-button {
-                  display: none;
-                }
+    .btn.sm {
+      width: 83px;
+      margin-right: 10px;
+    }
 
-                #input-submit-label {
-                  padding-left: 17px;
-                }
+    input::placeholder {
+      color: rgba(169, 169, 169, 0.632);
+    }
+
+    .button-hidden {
+      display: none;
+    }
+  }
+
+  #generic-start-button {
+    display: none;
+  }
+
+  #input-submit-label {
+    padding-left: 17px;
+  }
 }
